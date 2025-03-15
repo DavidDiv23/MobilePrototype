@@ -18,10 +18,7 @@ public class BehaviourTree : Node
     {
         return children[currentChild].Process();
     }
-
-
-
-
+    
 
     struct NodeLevel
     {
