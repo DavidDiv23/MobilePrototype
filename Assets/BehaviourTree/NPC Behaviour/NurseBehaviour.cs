@@ -4,35 +4,42 @@ using UnityEngine;
 using UnityEngine.AI;
 public class NurseBehaviour : BT_agent
 {
-    public GameObject patient;
+    //public GameObject patient;
     public GameObject[] tech;
-    public GameObject[] patients;
     
     new void Start()
     {
         base.Start();
-        
-        Leaf goToTech = new Leaf("Go to Tech", GoToTech);
-        Leaf goToPatient = new Leaf("Go to Patient", GoToPatient);
-
-        for (int i = 0; i < patients.Length; i++)
+    
+        RSelector selectObject = new RSelector("Select Object");
+        for (int i = 0; i < tech.Length; i++)
         {
-            
+            Leaf gtt = new Leaf("Go to " + tech[i].name, i, GoToTech);
+            selectObject.AddChild(gtt);
         }
+        
+        tree.AddChild(selectObject);
+        //tree.PrintTree();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         
     }
-
-    public Node.Status GoToPatient(int i)
+    
+    public Node.Status GoToTech(int i)
     {
-        if(!patients[i].activeSelf)
+        if(!tech[i].activeSelf)
         {
             return Node.Status.FAILURE;
         }
+        Node.Status s = GoToLocation(tech[i].transform.position);
+        if (s == Node.Status.SUCCESS)
+        {
+            tech[i].SetActive(false);
+        }
+        return s;
     }
     
 }

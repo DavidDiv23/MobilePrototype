@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RSelector : Node
 {
-    private bool shuffled = false;
+    bool shuffled = false;
     public RSelector(string n)
     {
         name = n;
@@ -17,14 +17,17 @@ public class RSelector : Node
             children.Shuffle();
             shuffled = true;
         }
-        Status childStatus = children[currentChild].Process();
-        if (childStatus == Status.RUNNING) return Status.RUNNING;
-        if (childStatus == Status.SUCCESS)
+
+        Status childstatus = children[currentChild].Process();
+        if (childstatus == Status.RUNNING) return Status.RUNNING;
+
+        if (childstatus == Status.SUCCESS)
         {
             currentChild = 0;
             shuffled = false;
             return Status.SUCCESS;
         }
+
         currentChild++;
         if (currentChild >= children.Count)
         {
@@ -32,6 +35,8 @@ public class RSelector : Node
             shuffled = false;
             return Status.FAILURE;
         }
+
         return Status.RUNNING;
     }
+
 }
