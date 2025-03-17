@@ -82,5 +82,4 @@ public class PatientBehaviour : BTAgent
         
         return s;
     }
-    
 }
