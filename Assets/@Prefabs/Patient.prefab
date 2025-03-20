@@ -1849,11 +1849,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbecc18c2147abc4aac9c9c708796080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
   state: 0
   treeStatus: 1
+  agent: {fileID: 0}
   register: {fileID: 0}
   rooms: []
+  hospitalExit: {fileID: 0}
+  timeToWait: 10
+  isWaiting: 0
 --- !u!1 &3651294812810619582
 GameObject:
   m_ObjectHideFlags: 0
