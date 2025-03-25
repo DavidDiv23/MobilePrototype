@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +10,7 @@ public class RobberBehaviour : BTAgent
     public GameObject van;
     public GameObject backdoor;
     public GameObject frontdoor;
+    public GameObject cop;
 
     public GameObject[] art;
 
@@ -25,7 +26,7 @@ public class RobberBehaviour : BTAgent
     public override void Start()
     {
         base.Start();
-        Sequence steal = new Sequence("Steal Something");
+       
         Leaf goToDiamond = new Leaf("Go To Diamond", GoToDiamond, 1);
         Leaf goToPainting = new Leaf("Go To Painting", GoToPainting, 2);
         Leaf hasGotMoney = new Leaf("Has Got Money", HasMoney);
@@ -42,6 +43,9 @@ public class RobberBehaviour : BTAgent
         Leaf goToVan = new Leaf("Go To Van", GoToVan);
         PSelector opendoor = new PSelector("Open Door");
 
+        Sequence runAway = new Sequence("Run Away");
+        Leaf canSee = new Leaf("Can See Cop?", CanSeeCop);
+        Leaf flee = new Leaf("Flee From Cop", FleeFromCop);
 
         Inverter invertMoney = new Inverter("Invert Money");
         invertMoney.AddChild(hasGotMoney);
@@ -49,15 +53,78 @@ public class RobberBehaviour : BTAgent
         opendoor.AddChild(goToFrontDoor);
         opendoor.AddChild(goToBackDoor);
 
-        steal.AddChild(invertMoney);
-        steal.AddChild(opendoor);
+        runAway.AddChild(canSee);
+        runAway.AddChild(flee);
 
+        Inverter cantSeeCop = new Inverter("Cant See Cop");
+        cantSeeCop.AddChild(canSee);
+
+        Sequence s1 = new Sequence("s1");
+        s1.AddChild(invertMoney);
+        Sequence s2 = new Sequence("s2");
+        s2.AddChild(cantSeeCop);
+        s2.AddChild(opendoor);
+        Sequence s3 = new Sequence("s3");
+        s3.AddChild(cantSeeCop);
+        s3.AddChild(selectObject);
+        Sequence s4 = new Sequence("s4");
+        s4.AddChild(cantSeeCop);
+        s4.AddChild(goToVan);
+
+        /*steal.AddChild(s1);
+        steal.AddChild(s2);
+        steal.AddChild(s3);
+        steal.AddChild(s4);*/
+
+        Leaf isOpen = new Leaf("Is Open", IsOpen);
+        Inverter isClosed = new Inverter("Is Closed");
+        isClosed.AddChild(isOpen);
+
+        BehaviourTree stealConditions = new BehaviourTree();
+        Sequence conditions = new Sequence("Stealing Conditions");
+        conditions.AddChild(isClosed);
+        conditions.AddChild(cantSeeCop);
+        conditions.AddChild(invertMoney);
+        stealConditions.AddChild(conditions);
+        DepSequence steal = new DepSequence("Steal Something", stealConditions, agent);
+        //steal.AddChild(invertMoney);
+        steal.AddChild(opendoor);
         steal.AddChild(selectObject);
         steal.AddChild(goToVan);
-        tree.AddChild(steal);
+
+        Selector stealWithFallback = new Selector("Steal with Fallback");
+        stealWithFallback.AddChild(steal);
+        stealWithFallback.AddChild(goToVan);
+
+        Selector beThief = new Selector("Be a thief");
+        beThief.AddChild(stealWithFallback);
+        beThief.AddChild(runAway);
+
+        tree.AddChild( beThief );
 
         tree.PrintTree();
 
+        StartCoroutine("DecreaseMoney");
+
+    }
+
+    IEnumerator DecreaseMoney()
+    {
+        while (true)
+        {
+            money = Mathf.Clamp(money - 50, 0, 1000);
+            yield return new WaitForSeconds(Random.Range(1, 5));
+        }
+    }
+
+    public Node.Status CanSeeCop()
+    {
+        return CanSee(cop.transform.position, "Cop", 10, 90);
+    }
+
+    public Node.Status FleeFromCop()
+    {
+        return Flee(cop.transform.position, 10);
     }
 
     public Node.Status HasMoney()
@@ -128,26 +195,16 @@ public class RobberBehaviour : BTAgent
         Node.Status s = GoToLocation(van.transform.position);
         if (s == Node.Status.SUCCESS)
         {
-            money += 300;
-            pickup.SetActive(false);
+            if (pickup != null)
+            {
+                money += 300;
+                pickup.SetActive(false);
+                pickup = null;
+            }
         }
         return s;
     }
 
-    public Node.Status GoToDoor(GameObject door)
-    {
-        Node.Status s = GoToLocation(door.transform.position);
-        if (s == Node.Status.SUCCESS)
-        {
-            if (!door.GetComponent<Lock>().isLocked)
-            {
-                door.GetComponent<NavMeshObstacle>().enabled = false;
-                return Node.Status.SUCCESS;
-            }
-            return Node.Status.FAILURE;
-        }
-        else
-            return s;
-    }
+   
 
 }

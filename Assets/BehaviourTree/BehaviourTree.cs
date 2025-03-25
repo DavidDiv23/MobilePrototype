@@ -21,9 +21,6 @@ public class BehaviourTree : Node
     }
 
 
-
-
-
     struct NodeLevel
     {
         public int level;

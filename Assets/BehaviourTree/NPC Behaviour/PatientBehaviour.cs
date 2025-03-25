@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatientBehaviour : BT_agent
+public class PatientBehaviour : BTAgent
 {
     public GameObject register;
     public GameObject[] rooms;
     public Transform hospitalExit;
-    public int timeToWait = 10;
+    public int timeToWait = 7;
     public bool isWaiting;
 
     new void Start()
@@ -39,7 +39,7 @@ public class PatientBehaviour : BT_agent
         Leaf goToExit = new Leaf("Go to Exit", GoToHospitalExit);
 
         gettingTreated.AddChild(randomRoomSelector);
-        gettingTreated.AddChild(waitingForDoctor);
+        gettingTreated.AddChild(waitingForDiagnostic);
         gettingTreated.AddChild(goToExit);
 
         RootSeq.AddChild(registerSequence);
@@ -59,9 +59,9 @@ public class PatientBehaviour : BT_agent
     {
         if (isWaiting)
         {
-            StartCoroutine(WaitCoroutine(timeToWait)); // Start coroutine only once
-            return Node.Status.FAILURE;
-        }
+            StartCoroutine(WaitCoroutine(timeToWait));
+            return Node.Status.RUNNING;
+        } 
         return Node.Status.SUCCESS;
     }
 

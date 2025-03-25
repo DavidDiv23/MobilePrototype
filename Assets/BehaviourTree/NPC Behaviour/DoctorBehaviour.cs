@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class DoctorBehaviour : BT_agent
+public class DoctorBehaviour : BTAgent
 {
     //private List<GameObject> patients = new List<GameObject>();
     //public GameObject[] patients;

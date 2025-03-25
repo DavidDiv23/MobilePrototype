@@ -12,14 +12,11 @@ public class SpawningPatients : MonoBehaviour
         Debug.Log("Spawning Patient");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SpawnPatient()
     {
-        Instantiate(patient, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        GameObject patients = Instantiate(patient, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        Blackboard.Instance.RegisterPatient(patients);
+        Debug.Log(Blackboard.Instance.patients.Count);
     }
 }

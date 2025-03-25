@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class NurseBehaviour : BT_agent
+public class NurseBehaviour : BTAgent
 {
     //public GameObject patient;
     public GameObject[] tech;
