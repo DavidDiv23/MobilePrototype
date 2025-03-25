@@ -165,22 +165,26 @@ public class DeceaseManager : MonoBehaviour
     private List<string> SelectSymptomsForNPC(Disease disease)
     {
         int symptomCountRoll = UnityEngine.Random.Range(0, 100);
-        int symptomsToPick = symptomCountRoll < 70 ? 3 : (symptomCountRoll < 90 ? 2 : 1);
+        int diseaseSymptomsToPick = symptomCountRoll < 70 ? 3 : (symptomCountRoll < 90 ? 2 : 1);
+        int totalSymptomsToPick = 3; // Always select 3 symptoms in total
 
         List<string> chosenSymptoms = new List<string>();
         List<string> diseaseSymptoms = new List<string>(disease.symptoms);
         List<string> availableSymptoms = new List<string>(sortedSymptoms);
-        availableSymptoms.RemoveAll(diseaseSymptoms.Contains);
+        availableSymptoms.RemoveAll(diseaseSymptoms.Contains); // Remove disease symptoms from pool
 
-        for (int i = 0; i < symptomsToPick; i++)
+        // Pick disease-related symptoms first
+        for (int i = 0; i < diseaseSymptomsToPick && diseaseSymptoms.Count > 0; i++)
         {
-            if (diseaseSymptoms.Count > 0 && (i == 0 || UnityEngine.Random.value < 0.75f))
-            {
-                int index = UnityEngine.Random.Range(0, diseaseSymptoms.Count);
-                chosenSymptoms.Add(diseaseSymptoms[index]);
-                diseaseSymptoms.RemoveAt(index);
-            }
-            else if (availableSymptoms.Count > 0)
+            int index = UnityEngine.Random.Range(0, diseaseSymptoms.Count);
+            chosenSymptoms.Add(diseaseSymptoms[index]);
+            diseaseSymptoms.RemoveAt(index);
+        }
+
+        // Fill remaining slots with random symptoms
+        for (int i = chosenSymptoms.Count; i < totalSymptomsToPick; i++)
+        {
+            if (availableSymptoms.Count > 0)
             {
                 int index = UnityEngine.Random.Range(0, availableSymptoms.Count);
                 chosenSymptoms.Add(availableSymptoms[index]);

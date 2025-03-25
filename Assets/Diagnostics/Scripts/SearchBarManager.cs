@@ -11,18 +11,6 @@ public class SearchBarManager : MonoBehaviour
     public GameObject searchbar;
     public int totalElements;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void GetSymptoms()
     {
         symptoms.Clear(); // Ensure the list is emptied before adding new items

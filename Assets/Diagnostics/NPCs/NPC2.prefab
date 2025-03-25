@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7cc8b1c7bc2dd47ae9e8677f808b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: your mom
+  name: Kyle Strongpants
   greeting: Greetings
   symptoms:
   - 
