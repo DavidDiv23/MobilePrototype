@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class Blackboard : MonoBehaviour
 {
-    public float timeOfDay;
-    //public Text clock;
+    public int timeOfDay; // in minutes
+    public Text clock;
     public Stack<GameObject> patients = new Stack<GameObject>();
-    public int openTime = 6;
-    public int closeTime = 20;
-
+    public int openTime = 6 * 60;  // 6:00 AM in minutes
+    public int closeTime = 14 * 60; // 2:00 PM (8-hour shift)
+    public SpawningPatients spawningPatients;
 
     static Blackboard instance;
     public static Blackboard Instance
@@ -20,50 +20,56 @@ public class Blackboard : MonoBehaviour
             if (!instance)
             {
                 Blackboard[] blackboards = GameObject.FindObjectsOfType<Blackboard>();
-                if (blackboards != null)
+                if (blackboards != null && blackboards.Length == 1)
                 {
-                    if (blackboards.Length == 1)
-                    {
-                        instance = blackboards[0];
-                        return instance;
-                    }
+                    instance = blackboards[0];
                 }
-                GameObject go = new GameObject("Blackboard", typeof(Blackboard));
-                instance = go.GetComponent<Blackboard>();
-                DontDestroyOnLoad(instance.gameObject);
+                else
+                {
+                    GameObject go = new GameObject("Blackboard", typeof(Blackboard));
+                    instance = go.GetComponent<Blackboard>();
+                    DontDestroyOnLoad(instance.gameObject);
+                }
             }
             return instance;
         }
-
         set
         {
             instance = value as Blackboard;
         }
     }
 
-
     void Start()
     {
-        //StartCoroutine("UpdateClock");
+        timeOfDay = openTime;
+        StartCoroutine(UpdateClock());
     }
 
-    // IEnumerator UpdateClock()
-    // {
-    //     while (true)
-    //     {
-    //         timeOfDay++;
-    //         if (timeOfDay > 23) timeOfDay = 0;
-    //         clock.text = timeOfDay + ":00";
-    //         if (timeOfDay == closeTime)
-    //             patrons.Clear();
-    //         yield return new WaitForSeconds(1);
-    //     }
-    // }
+    IEnumerator UpdateClock()
+    {
+        while (timeOfDay < closeTime)
+        {
+            UpdateClockDisplay();
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
+            timeOfDay++;
+            spawningPatients.SpawnPatient();
+        }
+
+        // End of day
+        patients.Clear();
+        UpdateClockDisplay(); // final time
+    }
+
+    void UpdateClockDisplay()
+    {
+        int hours = timeOfDay / 60;
+        int minutes = timeOfDay % 60;
+        clock.text = $"{hours:D2}:{minutes:D2}";
+    }
 
     public bool RegisterPatient(GameObject p)
     {
         patients.Push(p);
         return true;
     }
-    
 }

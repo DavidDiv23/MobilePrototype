@@ -1,0 +1,15 @@
+Game: Animal Crossing: New Horizons
+Subject: Tigers
+Copyright: Nintendo
+Model Ripper: Random Talking Bush
+Hosting Permissions: The Models Resource
+Notes: Listed below are the bodygroup names used for their default outfits.
+L = Long-sleeve, H = Short-sleeve, N = No-sleeve. Tshirts = Shirt, Onepiece = Dress.
+
+00: Rolf - TshirtsL
+01: Rowan - TshirtsH (Standard) / TshirtsL (Bromide)
+02: Tybalt - TshirtsL
+03: Bangle - OnepieceN
+04: Leonardo - TshirtsL (Standard) / TshirtsL (Bromide)
+05: Claudia - OnepieceN
+06: Bianca - TshirtsH (Standard) / TshirtsL (Bromide)

@@ -1,0 +1,28 @@
+﻿title: LionDialogue
+tags:
+---
+Lion: What's up?
+-> Nothing much. Just working out.
+    <<jump JorkingResponse>>
+    
+-> I'm just chilling.
+    <<jump ChillingResponse>>
+
+-> I don't want to talk right now.
+    <<jump MasterBaitingResponse>>
+===
+
+title: JorkingResponse
+---
+Lion: Working out, huh? I've never heard of that. What is it?
+===
+
+title: ChillingResponse
+---
+Lion: How about you train a little?
+===
+
+title: MasterBaitingResponse
+---
+Lion: That's a little too much information for me. I'm out of here.
+===

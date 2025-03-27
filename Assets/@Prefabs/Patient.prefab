@@ -3251,7 +3251,7 @@ MonoBehaviour:
   register: {fileID: 0}
   rooms: []
   hospitalExit: {fileID: 0}
-  timeToWait: 7
+  timeToWait: 2
   isWaiting: 0
 --- !u!1 &8845549751845214012
 GameObject:

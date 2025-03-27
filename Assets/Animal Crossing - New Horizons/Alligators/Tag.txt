@@ -1,0 +1,18 @@
+Game: Animal Crossing: New Horizons
+Subject: Alligators / Crocodiles
+Copyright: Nintendo
+Model Ripper: Random Talking Bush
+Hosting Permissions: The Models Resource
+Notes: Listed below are the bodygroup names used for their default outfits.
+L = Long-sleeve, H = Short-sleeve, N = No-sleeve. Tshirts = Shirt, Onepiece = Dress.
+* implies a villager with a unique model, the rest share the same base.
+
+00: Alfonso - TshirtsL
+01: Alli - TshirtsH (Standard) / OnepieceL (Bromide)
+02: Boots - OnepieceL / TshirtsN (Bromide)
+04: Del - TshirtsL (Standard) / TshirtsL (Bromide)
+06: Sly - TshirtsH
+07: Gayle - OnepieceL
+08: Drago* - TshirtsL
+
+03 (Liz) and 05 (Pironkon) aren't in New Horizons, due to being "retired".

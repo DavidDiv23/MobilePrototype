@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,16 @@ public class SpawningPatients : MonoBehaviour
 {
     public GameObject patient;
     public GameObject spawnPoint;
+    
     void Start()
     {
         Debug.Log("Spawning Patient");
     }
 
+    private void Update()
+    {
+        //SpawnPatient();
+    }
 
     public void SpawnPatient()
     {
