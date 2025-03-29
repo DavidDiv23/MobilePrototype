@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Yarn.Unity;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : MonoBehaviour, IPointerClickHandler
 {
     public DialogueRunner dialogueRunner;
-    public void StartDialogue()
+    public void OnPointerClick(PointerEventData eventData)
     {
         dialogueRunner.StartDialogue("LionDialogue");
     }
