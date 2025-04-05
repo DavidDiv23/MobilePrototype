@@ -11,28 +11,35 @@ public class DialogueTrigger : MonoBehaviour, IPointerClickHandler
 {
     
     [SerializeField] private DialogueRunner dialogueRunner;
-    public bool hasFinishedDialogue;
+
+    public bool isNPCClicked;
+    public Camera mainCamera;
+    public bool hasStartedDialogue;
     
     private void Start()
     {
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
-        
     }
     public void OnPointerClick(PointerEventData eventData)
     {
         dialogueRunner.StartDialogue("LionDialogue");
-        
+        hasStartedDialogue = true;
     }
-    private void OnDialogueComplete()
+    public void OnDialogueComplete()
     {
-        hasFinishedDialogue = true;
+        hasStartedDialogue = false;
+        isNPCClicked = false;
     }
 
     private void Update()
     {
-        if (hasFinishedDialogue)
+        if (Input.GetMouseButtonDown(0)) 
         {
-            Debug.Log("Dialogue finished");
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var hit) && hit.transform == transform) 
+            {
+                isNPCClicked = true;
+            }
         }
     }
 }
