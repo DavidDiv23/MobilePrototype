@@ -7,7 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Yarn.Unity;
 
-public class DialogueTrigger : MonoBehaviour, IPointerClickHandler
+public class DialogueTrigger : MonoBehaviour
 {
     
     [SerializeField] private DialogueRunner dialogueRunner;
@@ -15,19 +15,29 @@ public class DialogueTrigger : MonoBehaviour, IPointerClickHandler
     public bool isNPCClicked;
     public Camera mainCamera;
     public bool hasStartedDialogue;
+    private UI_Handler uiHandler;
     
     private void Start()
     {
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
+        dialogueRunner.onDialogueStart.AddListener(OnDialogueStart);
+        uiHandler = FindObjectOfType<UI_Handler>();
     }
-    public void OnPointerClick(PointerEventData eventData)
+
+    private void OnDialogueStart()
+    {
+        uiHandler.HideCanvas();
+    }
+
+
+    public void StartingDialogue()
     {
         dialogueRunner.StartDialogue("LionDialogue");
         hasStartedDialogue = true;
     }
     public void OnDialogueComplete()
     {
-        hasStartedDialogue = false;
+        hasStartedDialogue = true;
         isNPCClicked = false;
     }
 
