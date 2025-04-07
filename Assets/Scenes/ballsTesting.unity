@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d456eb5ecfeac04e82ad07c0c2cf227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaName: First
+  areaName: Garden
 --- !u!1 &146958136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3013,7 +3013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d456eb5ecfeac04e82ad07c0c2cf227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaName: Second
+  areaName: Inside
 --- !u!1 &685280248
 GameObject:
   m_ObjectHideFlags: 0
@@ -6724,10 +6724,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1751266267}
   areaMusicList:
-  - areaName: First
-    musicClip: {fileID: 8300000, guid: eaad8d632bc4d5a40b3a7e0c2b5dd32d, type: 3}
-  - areaName: Second
-    musicClip: {fileID: 8300000, guid: 07a6c6998b5105a4b987824344525c84, type: 3}
+  - areaName: Garden
+    musicClip: {fileID: 8300000, guid: 439ebbc6114dfa74599d7ec15eddbfe1, type: 3}
+  - areaName: Inside
+    musicClip: {fileID: 8300000, guid: 88dae5cb2c6321c41876d8194504a289, type: 3}
   fadeDuration: 0
 --- !u!4 &1751266269
 Transform:
