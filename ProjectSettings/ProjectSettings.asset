@@ -738,6 +738,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
+    Android: NODECANVAS
     Standalone: NODECANVAS
   additionalCompilerArguments: {}
   platformArchitecture: {}
