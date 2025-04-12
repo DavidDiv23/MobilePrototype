@@ -5,14 +5,14 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
-    public static int counter;
+    public int counter;
+    public NPC_Drop_Manager dropManager;
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
         {
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            counter++;
-            Debug.Log(counter);
+            dropManager.RegisterCorrectDrop();
         }       
     }
 }
