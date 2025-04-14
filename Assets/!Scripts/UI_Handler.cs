@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class UI_Handler : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UI_Handler : MonoBehaviour
     public GameObject DialogueButton;
     public GameObject TreatmentButton;
     public GameObject DragAndDropMenu;
+    public Image staminaBar;
     
     void Start()
     {
@@ -58,5 +60,9 @@ public class UI_Handler : MonoBehaviour
     public void HideDragAndDropButton()
     {
         DragAndDropMenu.SetActive(false);
+    }
+    public void ReduceStamina()
+    {
+        staminaBar.fillAmount = staminaBar.fillAmount - 0.1f;
     }
 }
