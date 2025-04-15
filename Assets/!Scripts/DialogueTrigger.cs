@@ -12,10 +12,11 @@ public class DialogueTrigger : MonoBehaviour
     
     [SerializeField] private DialogueRunner dialogueRunner;
 
-    public bool isNPCClicked;
+
     public Camera mainCamera;
     public bool hasStartedDialogue;
     private UI_Handler uiHandler;
+    public bool isInteracting;
     
     private void Start()
     {
@@ -32,24 +33,13 @@ public class DialogueTrigger : MonoBehaviour
 
     public void StartingDialogue()
     {
-        dialogueRunner.StartDialogue("LionDialogue");
+        dialogueRunner.StartDialogue("AnyaIntro");
         hasStartedDialogue = true;
     }
     public void OnDialogueComplete()
     {
-        hasStartedDialogue = true;
-        isNPCClicked = false;
+        hasStartedDialogue = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out var hit) && hit.transform == transform) 
-            {
-                isNPCClicked = true;
-            }
-        }
-    }
+    
 }

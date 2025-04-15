@@ -7,7 +7,7 @@ using UnityEngine;
 public class NPC_Personality_Handler : MonoBehaviour
 {
     public int happiness = 0;
-
+    public bool hasBecomeHappy = false;
     private void Start()
     {
         
@@ -15,6 +15,7 @@ public class NPC_Personality_Handler : MonoBehaviour
 
     public void IncreaseHappiness(int amount)
     {
+        hasBecomeHappy = true;
         happiness += amount;
         Debug.Log("Happiness increased by " + amount + ". Current happiness: " + happiness);
     }

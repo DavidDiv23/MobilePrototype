@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,6 +16,9 @@ public class UI_Handler : MonoBehaviour
     public GameObject DragAndDropMenu;
     public Image staminaBar;
     
+    public bool isInDistance;
+    public SphereCollider sphereCollider;
+    
     void Start()
     {
         uiCanvas.SetActive(false);
@@ -22,10 +26,13 @@ public class UI_Handler : MonoBehaviour
         DialogueButton.SetActive(false);
         TreatmentButton.SetActive(false);
         DragAndDropMenu.SetActive(false);
+        
+        sphereCollider = GetComponent<SphereCollider>();
     }
     
     public IEnumerator ShowCanvas()
     {
+        
         uiCanvas.SetActive(true);
         happinessText.text = "Happiness: " + '+' + GetComponent<NPC_Personality_Handler>().happiness.ToString();
         yield return new WaitForSeconds(2f);
@@ -46,7 +53,6 @@ public class UI_Handler : MonoBehaviour
         exclamationElement.SetActive(false);
         DialogueButton.SetActive(true);
         TreatmentButton.SetActive(true);
-        Debug.Log("Clicked");
     }
     public void HideDialogueAndTreatmentButtons()
     {
@@ -64,5 +70,31 @@ public class UI_Handler : MonoBehaviour
     public void ReduceStamina()
     {
         staminaBar.fillAmount = staminaBar.fillAmount - 0.1f;
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            ShowExclamation();
+            isInDistance = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            HideDialogueAndTreatmentButtons();
+            isInDistance = false;
+            HideCanvas();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isInDistance = true;
+        }
     }
 }
