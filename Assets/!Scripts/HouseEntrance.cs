@@ -7,18 +7,30 @@ using UnityEngine.UI;
 
 public class HouseEntrance : MonoBehaviour
 {
-    public Transform interiorSpawnPoint;
-    public CinemachineVirtualCamera externalCamera;
-    public CinemachineVirtualCamera interiorCamera;
+    public Camera externalCamera;
+    public Camera interiorCamera;
     public GameObject enterButton;
+    public GameObject interiorSpawnPoint;
     public GameObject houseEntrance;
-
+    public GameObject exitButton;
+    public Canvas worldSpaceCanvas;
     
     public void TeleportToInterior()
     {
-        transform.position = interiorSpawnPoint.position;
+        transform.position = interiorSpawnPoint.transform.position;
         interiorCamera.gameObject.SetActive(true);
         externalCamera.gameObject.SetActive(false);
+        
+        worldSpaceCanvas.worldCamera = interiorCamera;
+    }
+
+    public void TeleportToExterior()
+    {
+        transform.position = houseEntrance.transform.position;
+        interiorCamera.gameObject.SetActive(false);
+        externalCamera.gameObject.SetActive(true);
+        
+        worldSpaceCanvas.worldCamera = externalCamera;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,12 +39,20 @@ public class HouseEntrance : MonoBehaviour
         {
             enterButton.SetActive(true);
         }
+        else if (other.gameObject == interiorSpawnPoint)
+        {
+            exitButton.SetActive(true);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == houseEntrance)
         {
             enterButton.SetActive(false);
+        }
+        else if (other.gameObject == interiorSpawnPoint)
+        {
+            exitButton.SetActive(false);
         }
     }
 }
