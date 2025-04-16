@@ -5,14 +5,25 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
-    public int counter;
     public NPC_Drop_Manager dropManager;
+
+    public string acceptedItemID;
+
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null)
+        var draggableItem = eventData.pointerDrag?.GetComponent<DraggableItem>();
+        if (draggableItem != null)
         {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            dropManager.RegisterCorrectDrop();
-        }       
+            if (draggableItem.itemID == acceptedItemID)
+            {
+                draggableItem.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
+
+                dropManager.RegisterCorrectDrop();
+            }
+            else
+            {
+                draggableItem.ResetPosition();
+            }
+        }
     }
 }

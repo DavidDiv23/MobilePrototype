@@ -15,6 +15,8 @@ public class UI_Handler : MonoBehaviour
     public GameObject TreatmentButton;
     public GameObject DragAndDropMenu;
     public Image staminaBar;
+
+    public GameObject patientLog;
     
     public bool isInDistance;
     public SphereCollider sphereCollider;
@@ -26,7 +28,7 @@ public class UI_Handler : MonoBehaviour
         DialogueButton.SetActive(false);
         TreatmentButton.SetActive(false);
         DragAndDropMenu.SetActive(false);
-        
+        patientLog.SetActive(false);
         sphereCollider = GetComponent<SphereCollider>();
     }
     
@@ -70,6 +72,15 @@ public class UI_Handler : MonoBehaviour
     public void ReduceStamina()
     {
         staminaBar.fillAmount = staminaBar.fillAmount - 0.1f;
+    }
+    
+    public void ShowPatientLog()
+    {
+        patientLog.SetActive(true);
+    }
+    public void HidePatientLog()
+    {
+        patientLog.SetActive(false);
     }
     
     private void OnTriggerEnter(Collider other)

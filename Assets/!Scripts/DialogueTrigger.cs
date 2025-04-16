@@ -11,12 +11,13 @@ public class DialogueTrigger : MonoBehaviour
 {
     
     [SerializeField] private DialogueRunner dialogueRunner;
-
+    public GameObject[] unlockableWords;
 
     public Camera mainCamera;
     public bool hasStartedDialogue;
     private UI_Handler uiHandler;
     public bool isInteracting;
+    public GameObject exclamationMark;
     
     private void Start()
     {
@@ -39,6 +40,12 @@ public class DialogueTrigger : MonoBehaviour
     public void OnDialogueComplete()
     {
         hasStartedDialogue = false;
+        exclamationMark.SetActive(true);
+
+        foreach (var word in unlockableWords)
+        {
+            word.SetActive(true);
+        }
     }
 
     

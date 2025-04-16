@@ -5,15 +5,14 @@ using UnityEngine;
 public class NPC_Drop_Manager : MonoBehaviour
 {
     public int correctDrops = 0;
-    public bool hasGivenBlueprint = false;
+    public bool hasCompleted = false;
 
     public void RegisterCorrectDrop()
     {
         correctDrops++;
-        if (correctDrops >= 3 && !hasGivenBlueprint)
+        if (correctDrops >= 4)
         {
-            hasGivenBlueprint = true;
-            GiveBluePrint();
+            hasCompleted = true;
         }
     }
 
@@ -24,6 +23,6 @@ public class NPC_Drop_Manager : MonoBehaviour
     public void ResetDrops()
     {
         correctDrops = 0;
-        hasGivenBlueprint = false;
+        hasCompleted = false;
     }
 }
