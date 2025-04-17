@@ -37,6 +37,7 @@ public class DialogueTrigger : MonoBehaviour
         dialogueRunner.StartDialogue("AnyaIntro");
         hasStartedDialogue = true;
     }
+
     public void OnDialogueComplete()
     {
         hasStartedDialogue = false;
@@ -47,6 +48,4 @@ public class DialogueTrigger : MonoBehaviour
             word.SetActive(true);
         }
     }
-
-    
 }
