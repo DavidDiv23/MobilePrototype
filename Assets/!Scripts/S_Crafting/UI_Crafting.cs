@@ -266,7 +266,7 @@ public class UI_Crafting : MonoBehaviour
         // Early exit for invalid blueprints
         if (blueprint == null || !blueprint.HasRecipes())
         {
-            Debug.LogError("Invalid blueprint or missing ingredients!", this);
+            Debug.LogError("Invalid blueprint or missing ingrei!", this);
             return;
         }
 
