@@ -1,15 +1,31 @@
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class SimpleMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public VariableJoystick variableJoystick; // Assign the joystick in Inspector
+    private NavMeshAgent agent;
+    public Camera mainCam;
 
-    void Update()
+    private void Start()
     {
-        Vector3 direction = Vector3.forward * variableJoystick.Vertical + 
-                           Vector3.right * variableJoystick.Horizontal;
-        
-        transform.position += direction * (speed * Time.deltaTime);
+        agent = GetComponent<NavMeshAgent>();
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                agent.SetDestination(hit.point);
+            }
+        }
+    }
+    public void SetCamera(Camera cam)
+    {
+        mainCam = cam;
     }
 }
