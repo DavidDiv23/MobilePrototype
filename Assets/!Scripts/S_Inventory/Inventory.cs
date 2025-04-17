@@ -3,15 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory 
+public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
 {
+    public static Inventory Instance { get; private set; }
+
     private List<Item> itemList;
     public event EventHandler OnItemListChanged;
 
-    public Inventory()
+    private void Awake()
     {
-        itemList = new List<Item>();
-        Debug.Log("Inventory initialized");
+        if (Instance == null)
+        {
+            Instance = this;
+            itemList = new List<Item>();
+
+            // Detach from parent (make it a root GameObject)
+            transform.parent = null;
+
+            DontDestroyOnLoad(gameObject); // Now works because it's a root
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Improved test items method with error handling
@@ -24,6 +38,7 @@ public class Inventory
         }
 
         // Safe test items list with fallbacks
+        //THE NAMES HERE NEED TO MATCH THE ITEM NAMES IN THE SCRIPTABLE OBJECT
         var testItems = new List<(string name, string fallbackName, int amount)>()
     {
         ("Crystal", null, 1),
@@ -33,7 +48,8 @@ public class Inventory
         ("Rock", "Stone", 5),
         ("Blueprint", "Crafting Blueprint", 1),
         ("Berry", "Red Berry", 10),
-        ("Feather", "Bird Feather", 4)
+        ("Feather", "Bird Feather", 4),
+        ("Pill Dispenser", null, 1)
     };
 
         int addedCount = 0;
