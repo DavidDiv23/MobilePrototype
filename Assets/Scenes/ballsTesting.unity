@@ -1578,6 +1578,134 @@ Transform:
   - {fileID: 1718218947}
   m_Father: {fileID: 346629793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1098923393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098923398}
+  - component: {fileID: 1098923397}
+  - component: {fileID: 1098923396}
+  - component: {fileID: 1098923395}
+  - component: {fileID: 1098923394}
+  m_Layer: 0
+  m_Name: Berry (3)
+  m_TagString: Pickable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1098923394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098923393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79be8d6b9cf7b8c4aadc56095688e155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: d8b5ce6782e7651478c557a4261df2ac, type: 2}
+  amount: 40
+  pickupDistance: 6
+  touchRadius: 1
+  normalMaterial: {fileID: 2100000, guid: 298d406bcf8919443854648bfc489e94, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: df788ccc25d9c4f4184ef830854a1f0d, type: 2}
+  highlightIntensity: 1.5
+  useEmission: 1
+  showDebugInfo: 1
+  debugGizmoColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!135 &1098923395
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098923393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1098923396
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098923393}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 298d406bcf8919443854648bfc489e94, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1098923397
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098923393}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1098923398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098923393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.86, y: 8.29, z: 11.776}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139325548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7778558435068644802, guid: 7f29e5f7ffdea4a6793cefb278b61f0c, type: 3}
@@ -2471,7 +2599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 913e61e5525990a4da20c6e1b4cb5e02, type: 2}
-  amount: 10
+  amount: 9
   pickupDistance: 6
   touchRadius: 1
   normalMaterial: {fileID: 2100000, guid: 298d406bcf8919443854648bfc489e94, type: 2}
@@ -3062,6 +3190,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1209712639120234848, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+      propertyPath: recipeTopPadding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209712639120234848, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+      propertyPath: recipeLeftPadding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209712639120234848, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+      propertyPath: blueprintVerticalSpacing
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1934220386803096250, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3141,6 +3281,22 @@ PrefabInstance:
     - target: {fileID: 1934220386803096250, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604982935266799713, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604982935266799713, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604982935266799713, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 397.5419
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604982935266799713, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 687.78
       objectReference: {fileID: 0}
     - target: {fileID: 9204311927758307920, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
       propertyPath: m_Name
@@ -4001,4 +4157,5 @@ SceneRoots:
   - {fileID: 1508437896}
   - {fileID: 1280340848}
   - {fileID: 168330070}
+  - {fileID: 1098923398}
   - {fileID: 513383821}

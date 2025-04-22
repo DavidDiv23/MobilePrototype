@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +36,9 @@ public class UI_Crafting : MonoBehaviour
     public float blueprintSlotSizeY = 120f;
     public float blueprintHorizontalSpacing = 15f;
     public float blueprintVerticalSpacing = 20f;
-    public Vector2 blueprintStartOffset = new Vector2(20, -20);
-
+    // Remove this line ↓
+    // public Vector2 blueprintStartOffset = new Vector2(20, -20);
+    
     [Header("Grid Settings - Recipe Window")]
     public float recipeLeftPadding = 15f;
     public float recipeTopPadding = 15f;
@@ -46,7 +47,8 @@ public class UI_Crafting : MonoBehaviour
     public float recipeSlotSizeY = 100f;
     public float recipeHorizontalSpacing = 10f;
     public float recipeVerticalSpacing = 15f;
-    public Vector2 recipeStartOffset = new Vector2(10, -10);
+    // Remove this line ↓
+    // public Vector2 recipeStartOffset = new Vector2(10, -10);
 
     private ItemSO selectedRecipeResult;
     private ItemSO.CraftingRecipe currentRecipe;
@@ -219,34 +221,33 @@ public class UI_Crafting : MonoBehaviour
                 GameObject slotObj = Instantiate(blueprintSlotPrefab, InventoryWindow);
                 slotObj.SetActive(true);
 
-                // Grid positioning with top-left origin
+                // === NEW POSITIONING CODE START ===
+                // Get container dimensions
+                RectTransform containerRect = InventoryWindow.GetComponent<RectTransform>();
+                float containerWidth = containerRect.rect.width;
+                float containerHeight = containerRect.rect.height;
+
+                // Calculate starting position (top-left origin accounting for center pivot)
+                float startX = -containerWidth / 2 + leftPadding + blueprintSlotSizeX / 2;
+                float startY = containerHeight / 2 - topPadding - blueprintSlotSizeY / 2;
+
+                // Grid calculations
                 int row = i / blueprintItemsPerRow;
                 int col = i % blueprintItemsPerRow;
 
-                float posX = blueprintStartOffset.x + leftPadding +
-                           col * (blueprintSlotSizeX + blueprintHorizontalSpacing);
+                // Calculate position with spacing
+                float posX = startX + col * (blueprintSlotSizeX + blueprintHorizontalSpacing);
+                float posY = startY - row * (blueprintSlotSizeY + blueprintVerticalSpacing);
 
-                float posY = blueprintStartOffset.y - topPadding -
-                           row * (blueprintSlotSizeY + blueprintVerticalSpacing);
+                // Set position
                 RectTransform rect = slotObj.GetComponent<RectTransform>();
                 rect.anchoredPosition = new Vector2(posX, posY);
+                // === NEW POSITIONING CODE END ===
 
-                // Check component existence
+                // Rest of your existing slot setup code remains the same...
                 var slot = slotObj.GetComponent<BlueprintSlotUI>();
-                if (slot == null)
-                {
-                    Debug.LogError($"Missing BlueprintSlotUI on {slotObj.name}", slotObj);
-                    continue;
-                }
-
-                // Verify blueprint data before setup
-                if (currentBlueprint == null || currentBlueprint.itemData == null) // Fixed variable name
-                {
-                    Debug.LogError("Invalid blueprint item!", this);
-                    continue;
-                }
-
-                slot.Setup(currentBlueprint, this); // Fixed variable name
+                if (slot == null) continue;
+                slot.Setup(currentBlueprint, this);
             }
 
 
@@ -315,7 +316,6 @@ public class UI_Crafting : MonoBehaviour
                 continue;
             }
 
-            // Create and configure requirement UI
             var requirementObj = Instantiate(recipeItemTemplate, recipeWindow);
             requirementObj.SetActive(true);
 
@@ -342,19 +342,27 @@ public class UI_Crafting : MonoBehaviour
                 playerAmount >= requirement.amount
             );
 
-            // Grid positioning with top-left origin
+            // === CORRECTED POSITIONING CODE ===
+            // Get container rect
+            RectTransform recipeContainerRect = recipeWindow.GetComponent<RectTransform>();
+
+            // Calculate starting position based on top-left pivot
+            float startX = recipeLeftPadding + (recipeSlotSizeX / 2);
+            float startY = recipeTopPadding + (recipeSlotSizeY / 2);
+
+            // Grid calculations
             int index = currentRecipe.requirements.IndexOf(requirement);
             int row = index / recipeItemsPerRow;
             int col = index % recipeItemsPerRow;
 
-            float posX = recipeStartOffset.x + 20f +  // Left padding
-                       col * (recipeSlotSizeX + recipeHorizontalSpacing);
+            // Calculate position with spacing (positive Y moves downward)
+            float posX = startX + col * (recipeSlotSizeX + recipeHorizontalSpacing);
+            float posY = startY + row * (recipeSlotSizeY + recipeVerticalSpacing);
 
-            float posY = recipeStartOffset.y - 20f -  // Top padding
-                       row * (recipeSlotSizeY + recipeVerticalSpacing);
-
+            // Set position
             RectTransform rect = requirementObj.GetComponent<RectTransform>();
             rect.anchoredPosition = new Vector2(posX, posY);
+            // === END CORRECTED CODE ===
         }
 
         // Update craft button state after creating all requirements
