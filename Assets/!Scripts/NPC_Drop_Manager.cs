@@ -10,7 +10,8 @@ public class NPC_Drop_Manager : MonoBehaviour
     public void RegisterCorrectDrop()
     {
         correctDrops++;
-        if (correctDrops >= 4)
+        Debug.Log(correctDrops);
+        if (correctDrops == 4)
         {
             hasCompleted = true;
         }
