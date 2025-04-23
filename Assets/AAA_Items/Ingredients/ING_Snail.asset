@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d317f0674643dd843a22b203bb6d1b46, type: 3}
   m_Name: ING_Snail
   m_EditorClassIdentifier: 
-  itemName: Snail
+  itemName: Shell
   icon: {fileID: 21300000, guid: 51342a48f54a87f44944b2ed48f16d45, type: 3}
   description: The shell of a snail. Reminds you of a cinnamon roll.
-  category: 0
   isStackable: 1
+  category: 0
   isLearnedByDefault: 0
   recipes: []

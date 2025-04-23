@@ -6,25 +6,52 @@ public class InventoryManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private UI_Inventory uiInventory;
+    [SerializeField] private UI_Crafting uiCrafting;
     [SerializeField] private ItemDatabaseSO itemDatabase;
-
-    private Inventory inventory;
+    [SerializeField] private Inventory inventory;
 
     private void Awake()
     {
-        inventory = new Inventory();
+        // Initialize inventory first
+        if (inventory == null)
+        {
+            inventory = gameObject.AddComponent<Inventory>();
+            Debug.Log("Created new Inventory component", this);
+        }
 
+        // Initialize UIs after inventory is ready
+        InitializeUI();
+
+        // Add test items
+        if (itemDatabase != null)
+            inventory.AddDefaultTestItems(itemDatabase);
+    }
+
+    private void InitializeUI()
+    {
+        // Set UI_Inventory first
         if (uiInventory != null)
         {
             uiInventory.SetInventory(inventory);
         }
         else
         {
-            Debug.LogError("UI_Inventory reference not set in InventoryManager");
+            Debug.LogError("UI_Inventory reference missing!", this);
         }
 
-        inventory.AddDefaultTestItems(itemDatabase);
+        // Set UI_Crafting after
+        if (uiCrafting != null)
+        {
+            uiCrafting.SetInventory(inventory);
+        }
+        else
+        {
+            Debug.LogWarning("UI_Crafting reference missing - crafting disabled", this);
+        }
     }
+
+
+
 
     public void AddItem(Item item)
     {
