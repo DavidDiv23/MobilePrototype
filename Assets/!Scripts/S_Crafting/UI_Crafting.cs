@@ -54,6 +54,8 @@ public class UI_Crafting : MonoBehaviour
     private ItemSO.CraftingRecipe currentRecipe;
     private bool isInitialized = false;
 
+    private Item selectedBlueprintItem;
+
     private void Start()
     {
         // Initial refresh
@@ -264,6 +266,7 @@ public class UI_Crafting : MonoBehaviour
 
     public void ShowBlueprintDetails(Item blueprint)
     {
+        selectedBlueprintItem = blueprint;
         // Early exit for invalid blueprints
         if (blueprint == null || !blueprint.HasRecipes())
         {
@@ -406,12 +409,11 @@ public class UI_Crafting : MonoBehaviour
             amount = currentRecipe.resultAmount
         });
 
-        // Refresh UI with new blueprint state
-        ShowBlueprintDetails(new Item
+        // Refresh UI with the stored blueprint
+        if (selectedBlueprintItem != null)
         {
-            itemData = selectedRecipeResult,
-            amount = 1
-        });
+            ShowBlueprintDetails(selectedBlueprintItem);
+        }
 
         UpdateCraftingState();
     }
