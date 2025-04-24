@@ -23,8 +23,8 @@ public class InventoryManager : MonoBehaviour
         InitializeUI();
 
         // Add test items
-        if (itemDatabase != null)
-            inventory.AddDefaultTestItems(itemDatabase);
+        //if (itemDatabase != null)
+          //  inventory.AddDefaultTestItems(itemDatabase);
     }
 
     private void InitializeUI()
