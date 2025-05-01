@@ -6485,6 +6485,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a2d7002c0a6a05442be2a0634213b05a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2064532747}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a2d7002c0a6a05442be2a0634213b05a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2064532748}
   m_SourcePrefab: {fileID: 100100000, guid: a2d7002c0a6a05442be2a0634213b05a, type: 3}
 --- !u!1 &947001968
 GameObject:
@@ -13814,6 +13817,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdPoint: {fileID: 1848250540}
+--- !u!114 &2064532748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064532738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441455629870751429998913edbe04b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proximityMusic: {fileID: 8300000, guid: 59612c3f58d838e4980107cb796984c1, type: 3}
+  triggerRadius: 3.64
+  player: {fileID: 543450652087859662}
 --- !u!1001 &2089915794
 PrefabInstance:
   m_ObjectHideFlags: 0
