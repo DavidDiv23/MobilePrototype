@@ -10,12 +10,16 @@ public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
     private List<Item> itemList;
     public event EventHandler OnItemListChanged;
 
+    private bool hasAddedDefaultTestItems = false; // New flag
+
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            itemList = new List<Item>();
+            itemList = new List<Item>(); // Starts empty
+            hasAddedDefaultTestItems = false; // Reset flag
 
             // Detach from parent (make it a root GameObject)
             transform.parent = null;
@@ -31,6 +35,8 @@ public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
     // Improved test items method with error handling
     public void AddDefaultTestItems(ItemDatabaseSO database)
     {
+        if (hasAddedDefaultTestItems) return; // Prevent duplicates
+
         if (database == null)
         {
             Debug.LogError("Database reference is null!");
@@ -41,15 +47,15 @@ public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
         //THE NAMES HERE NEED TO MATCH THE ITEM NAMES IN THE SCRIPTABLE OBJECT
         var testItems = new List<(string name, string fallbackName, int amount)>()
     {
-        ("Crystal", null, 1),
+        ("Crystal", null, 5),
         ("Stick", "Wooden Stick", 3),
         ("Snail Shell", "Shell", 2),
         ("Orange", null, 1),
-        ("Rock", "Stone", 5),
+        ("Rock", "Stone", 20),
         ("Blueprint", "Crafting Blueprint", 1),
         ("Berry", "Red Berry", 10),
-        ("Feather", "Bird Feather", 4),
-        ("Pill Dispenser", null, 1)
+       // ("Feather", "Bird Feather", 4),
+        //("Pill Dispenser", null, 1),
     };
 
         int addedCount = 0;
@@ -74,6 +80,8 @@ public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
                 Debug.LogWarning($"Could not find item '{primaryName}'{(fallbackName != null ? $" or '{fallbackName}'" : "")}");
             }
         }
+
+        hasAddedDefaultTestItems = true;
 
         Debug.Log($"Successfully added {addedCount} test items");
     }
@@ -152,65 +160,4 @@ public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
         return itemList;
     }
 
-
-    /*
-    private List<Item> itemList;
-   public Inventory()
-    {
-        itemList = new List<Item>();
-
-        AddItem(new Item { itemtype = Item.ItemType.Crystal, amount = 1 });
-        AddItem(new Item { itemtype = Item.ItemType.Stick, amount = 1 });
-        AddItem(new Item { itemtype = Item.ItemType.Snail, amount = 1 });
-        AddItem(new Item { itemtype = Item.ItemType.Orange, amount = 1 });
-        AddItem(new Item { itemtype = Item.ItemType.Rock, amount = 1 });
-        AddItem(new Item { itemtype = Item.ItemType.Blueprint, amount = 1 });
-        AddItem(new Item { itemtype = Item.ItemType.Berry, amount = 1 });
-        AddItem(new Item { itemtype = Item.ItemType.Feather, amount = 1 });
-        
-        Debug.Log(itemList.Count);
-    
-        Debug.Log("Iventory");
-    }
-
-    public void AddItem(Item item)
-    {
-        if (item.isStackable())
-        {
-            // Handle stackable items (existing logic)
-            bool itemAlreadyInInventory = false;
-            foreach (Item inventoryItem in itemList)
-            {
-                if (inventoryItem.itemtype == item.itemtype)
-                {
-                    inventoryItem.amount += item.amount;
-                    itemAlreadyInInventory = true;
-                }
-            }
-            if (!itemAlreadyInInventory)
-            {
-                itemList.Add(item);
-            }
-        }
-        else
-        {
-            // Handle unstackable items - add each as separate entry
-            for (int i = 0; i < item.amount; i++)
-            {
-                Item newItem = new Item
-                {
-                    itemtype = item.itemtype,
-                    amount = 1 // Each gets amount 1
-                };
-                itemList.Add(newItem);
-            }
-        }
-        Debug.Log($"Added {item.amount}x {item.itemtype}. Total items: {itemList.Count}");
-    }
-
-    public List<Item> GetItemList()
-    {
-        return itemList;
-    }
-    */
 }
