@@ -203,7 +203,7 @@ public class UI_Crafting : MonoBehaviour
 
             // Check 3: Get inventory items
             var items = inventory?.GetItemList();
-            Debug.Log($"Total items in inventory: {items?.Count ?? 0}");
+            //Debug.Log($"Total items in inventory: {items?.Count ?? 0}");
 
             // Filter blueprints
             var blueprints = items

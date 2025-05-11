@@ -113,7 +113,7 @@ public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
         }
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
-        Debug.Log($"Added {item.amount}x {item.itemData.itemName}. Total items: {itemList.Count}");
+        //Debug.Log($"Added {item.amount}x {item.itemData.itemName}. Total items: {itemList.Count}");
     }
 
     public void RemoveItem(Item item)

@@ -9,21 +9,22 @@ using Yarn.Unity;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    
     [SerializeField] private DialogueRunner dialogueRunner;
-    public GameObject[] unlockableWords;
+    public string dialogueNodeName; // Assign per character in Inspector
 
-    public Camera mainCamera;
-    public bool hasStartedDialogue;
-    private UI_Handler uiHandler;
-    public bool isInteracting;
+    public GameObject[] unlockableWords;
     public GameObject exclamationMark;
-    
+    public Camera mainCamera;
+    public CameraZoomScript cameraZoom;
+
+    private UI_Handler uiHandler;
+    public bool hasStartedDialogue;
+
     private void Start()
     {
-        dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
-        dialogueRunner.onDialogueStart.AddListener(OnDialogueStart);
         uiHandler = FindObjectOfType<UI_Handler>();
+        dialogueRunner.onDialogueComplete.AddListener(CheckIfMyDialogueFinished);
+        dialogueRunner.onDialogueStart.AddListener(OnDialogueStart);
     }
 
     private void OnDialogueStart()
@@ -31,17 +32,26 @@ public class DialogueTrigger : MonoBehaviour
         uiHandler.HideCanvas();
     }
 
-
     public void StartingDialogue()
     {
-        dialogueRunner.StartDialogue("AnyaIntro");
+        dialogueRunner.StartDialogue(dialogueNodeName);
         hasStartedDialogue = true;
     }
 
-    public void OnDialogueComplete()
+    private void CheckIfMyDialogueFinished()
+    {
+        // Only respond if this specific character's dialogue just finished
+        if (dialogueRunner.CurrentNodeName == dialogueNodeName)
+        {
+            OnMyDialogueComplete();
+        }
+    }
+
+    private void OnMyDialogueComplete()
     {
         hasStartedDialogue = false;
-        exclamationMark.SetActive(true);
+        if (exclamationMark != null) exclamationMark.SetActive(true);
+        if (cameraZoom != null) cameraZoom.ResetCamera();
 
         foreach (var word in unlockableWords)
         {
