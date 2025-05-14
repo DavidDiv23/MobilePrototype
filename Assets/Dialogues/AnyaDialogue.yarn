@@ -1,14 +1,34 @@
 ﻿title: AnyaIntro
 ---
 
-Anya: Hi, are you the new nurse?
--> Yeah.
-    Anya: Oh nice to meet you! I’m Anya.
--> Uhh.. I think so..?
-    Anya: Oh nice to meet you! I’m Anya.
+Kino: Hi erm… are you ANYAW- Anya? 
 
--> Hello..
+Anya: Yeah, and who might you be? Are you also going to make a fool of me, like that rude robot?!
+-> I’m the new nurse.
+    Kino: My-my name is Kino, the new nurse-- intern.  
+    Anya: And what do you want from me?
+-> I don’t want to make fun of you.
+    Kino: I’m very new to this and it’s gonna sound very awkward, but I’m sorry if my boss made you feel that way. My-my name is Kino, the new nurse-- intern.
+    Anya: Okay… apology accepted.
+    
+Kino: Look, the thing is… I need to help you, or Aiko will fire me, and this is only my first day! So, if there is anything you can tell me to treat you, it would mean a great deal for me. 
 
+Anya: Hmm, that robot really is mean to everyone. Alright, maybe you can help me. I’ve been experiencing some dizziness and anxiety lately; I probably need to get my blood pressure checked. 
+
+Kino: Then let’s go inside to get that looked at!  
+
+<<set $hasFinishedIntro = true>>
+===
+
+title: AnyaDialogueManager
+---
+Uga Buga
+===
+
+
+
+title: OldAnyaDialogue
+---
 Anya: You seem a little nervous..
 -> Yeah, this is all very new for me.
 
@@ -38,5 +58,3 @@ Anya: Me being me, I <color=\#FFA500>forgot to ask</color> sometimes and the rob
 Anya: If you could help me out with that, that would be amazing.
 
 ===
-
-

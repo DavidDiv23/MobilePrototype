@@ -6,6 +6,7 @@ public class SimpleMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Camera mainCam;
+    public DialogueTrigger dialogueTrigger;
 
     private void Start()
     {
@@ -13,6 +14,8 @@ public class SimpleMovement : MonoBehaviour
     }
     private void Update()
     {
+        if(dialogueTrigger.hasStartedDialogue)
+            return;
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);

@@ -23,8 +23,8 @@ public class DialogueTrigger : MonoBehaviour
     private void Start()
     {
         uiHandler = FindObjectOfType<UI_Handler>();
-        dialogueRunner.onDialogueComplete.AddListener(CheckIfMyDialogueFinished);
         dialogueRunner.onDialogueStart.AddListener(OnDialogueStart);
+        dialogueRunner.onDialogueComplete.AddListener(CheckIfMyDialogueFinished);
     }
 
     private void OnDialogueStart()
@@ -34,14 +34,32 @@ public class DialogueTrigger : MonoBehaviour
 
     public void StartingDialogue()
     {
-        dialogueRunner.StartDialogue(dialogueNodeName);
+        var variableStorage = dialogueRunner.VariableStorage;
+        
+        if (dialogueNodeName == "AnyaIntro" || dialogueNodeName == "AnyaDialogueManager")
+        {
+            variableStorage.TryGetValue("$hasFinishedIntro", out bool hasFinishedIntro);
+            
+            if (hasFinishedIntro)
+            {
+                dialogueRunner.StartDialogue("AnyaDialogueManager");
+            }
+            else
+            {
+                dialogueRunner.StartDialogue("AnyaIntro");
+            }
+        }
+        else
+        {
+            dialogueRunner.StartDialogue(dialogueNodeName);
+        }
+
         hasStartedDialogue = true;
     }
 
     private void CheckIfMyDialogueFinished()
     {
-        // Only respond if this specific character's dialogue just finished
-        if (dialogueRunner.CurrentNodeName == dialogueNodeName)
+        if (dialogueRunner.CurrentNodeName == "AnyaIntro")
         {
             OnMyDialogueComplete();
         }
@@ -58,4 +76,5 @@ public class DialogueTrigger : MonoBehaviour
             word.SetActive(true);
         }
     }
+    
 }
