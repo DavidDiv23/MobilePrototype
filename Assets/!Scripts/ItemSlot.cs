@@ -18,7 +18,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             {
                 draggableItem.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
 
-                dropManager.RegisterCorrectDrop();
+                dropManager.RegisterDragAndDrop();
             }
             else
             {
