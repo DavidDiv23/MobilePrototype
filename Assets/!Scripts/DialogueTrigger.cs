@@ -12,7 +12,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private DialogueRunner dialogueRunner;
     public string dialogueNodeName; // Assign per character in Inspector
 
-    public GameObject[] unlockableWords;
+
     public GameObject exclamationMark;
     public Camera mainCamera;
     public CameraZoomScript cameraZoom;
@@ -68,13 +68,9 @@ public class DialogueTrigger : MonoBehaviour
     private void OnMyDialogueComplete()
     {
         hasStartedDialogue = false;
-        if (exclamationMark != null) exclamationMark.SetActive(true);
+  
         if (cameraZoom != null) cameraZoom.ResetCamera();
-
-        foreach (var word in unlockableWords)
-        {
-            word.SetActive(true);
-        }
+        
     }
     
 }

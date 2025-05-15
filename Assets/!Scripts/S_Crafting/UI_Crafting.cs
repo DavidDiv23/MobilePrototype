@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class UI_Crafting : MonoBehaviour
 {
+    
+    public static event Action<ItemSO> OnItemCrafted;
     [Header("References")]
     [SerializeField] private Inventory inventory; 
     [SerializeField] private Button craftButton;
@@ -395,7 +397,9 @@ public class UI_Crafting : MonoBehaviour
             {
                 itemData = req.item,
                 amount = req.amount
+                
             });
+            OnItemCrafted?.Invoke(currentRecipe.resultItem);
         }
 
         // Add crafted item

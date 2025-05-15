@@ -5056,7 +5056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc11e24bce6ec324cb6d5442fb2976c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropManager: {fileID: 0}
+  dropManager: {fileID: 5866666021210002798}
   acceptedItemID: forget
 --- !u!114 &380037868
 MonoBehaviour:
@@ -5477,7 +5477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204311927758307920, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6069,10 +6069,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 3579681406051411869}
   dialogueNodeName: 
-  unlockableWords:
-  - {fileID: 1088770729}
-  - {fileID: 1975398238}
-  - {fileID: 1191786580}
   exclamationMark: {fileID: 647140081}
   mainCamera: {fileID: 1671367024}
   cameraZoom: {fileID: 0}
@@ -6989,7 +6985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc11e24bce6ec324cb6d5442fb2976c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropManager: {fileID: 0}
+  dropManager: {fileID: 5866666021210002798}
   acceptedItemID: high BP
 --- !u!1 &495604523
 GameObject:
@@ -9173,7 +9169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc11e24bce6ec324cb6d5442fb2976c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropManager: {fileID: 0}
+  dropManager: {fileID: 5866666021210002798}
   acceptedItemID: anxiety
 --- !u!114 &631822235
 MonoBehaviour:
@@ -16430,107 +16426,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49a1e3bfaa7b664691437385cca45ef, type: 3}
---- !u!1 &1317330849
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1317330853}
-  - component: {fileID: 1317330852}
-  - component: {fileID: 1317330851}
-  - component: {fileID: 1317330850}
-  m_Layer: 5
-  m_Name: Enter Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1317330850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317330849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1317330851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317330849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
---- !u!223 &1317330852
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317330849}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 1671367024}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1317330853
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317330849}
-  m_LocalRotation: {x: -0, y: -0, z: 0.000000014901161, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 18.459997}
-  m_LocalScale: {x: 0.84112126, y: 0.8411213, z: 0.8411213}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 15.481085, y: 11.453711}
-  m_SizeDelta: {x: 97.064514, y: 35.592957}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1319451983
 GameObject:
   m_ObjectHideFlags: 0
@@ -16652,7 +16547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1323731926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22203,7 +22098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1763204359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24887,6 +24782,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6afe412732c76414a8631d9c6465bd77, type: 3}
   m_PrefabInstance: {fileID: 627995186}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1924822979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9168107405611254740, guid: 2950cccf2639d37469a93f4a8d8272a5, type: 3}
+  m_PrefabInstance: {fileID: 391977151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ba39766beea354eb6de7b194331edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1932766591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f49a1e3bfaa7b664691437385cca45ef, type: 3}
@@ -28564,6 +28470,13 @@ MonoBehaviour:
   hospitalEntrance: {fileID: 278682955}
   dialogueRunner: {fileID: 3579681406051411869}
   hospitalButton: {fileID: 1763204358}
+  exclamationMark: {fileID: 1335424303}
+  unlockableWords:
+  - {fileID: 950996825}
+  - {fileID: 2018484711}
+  - {fileID: 20199188}
+  inventory: {fileID: 1924822979}
+  pillsBlueprint: {fileID: 11400000, guid: e480d9797b8bbd44abe78d61c382ad20, type: 2}
 --- !u!1 &919132148032843522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 973a9662af94ac14fae2e6aeb08c4e14, type: 3}
@@ -29749,10 +29662,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 3579681406051411869}
   dialogueNodeName: AnyaIntro
-  unlockableWords:
-  - {fileID: 950996825}
-  - {fileID: 2018484711}
-  - {fileID: 20199188}
   exclamationMark: {fileID: 1335424303}
   mainCamera: {fileID: 1671367024}
   cameraZoom: {fileID: 5866666021210002807}
@@ -32039,7 +31948,6 @@ SceneRoots:
   - {fileID: 943345340}
   - {fileID: 1639762848}
   - {fileID: 1736885163}
-  - {fileID: 1317330853}
   - {fileID: 391977151}
   - {fileID: 562632223}
   - {fileID: 534766094}

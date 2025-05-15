@@ -14,6 +14,12 @@ public class Tutorial : MonoBehaviour
     public DialogueRunner dialogueRunner;
     public GameObject hospitalButton;
     
+    public GameObject exclamationMark;
+    public GameObject[] unlockableWords;
+    
+    public Inventory inventory;
+    public ItemSO pillsBlueprint;
+    
     private InMemoryVariableStorage yarnVariables;
 
     private void Start()
@@ -23,14 +29,21 @@ public class Tutorial : MonoBehaviour
         yarnVariables = dialogueRunner.VariableStorage as InMemoryVariableStorage;
         
         dialogueRunner.onDialogueComplete.AddListener(CheckIntroComplete);
-        dialogueRunner.onDialogueComplete.AddListener(PatientData);
+        dialogueRunner.onDialogueComplete.AddListener(CraftingBlueprint);
+        
+        
     }
 
-    private void PatientData()
+    private void CraftingBlueprint()
     {
         if (dialogueRunner.CurrentNodeName == "ManagerDialogueAfterAnya")
         {
-            //open data ui
+            Item blueprintItem = new Item
+            {
+                itemData = pillsBlueprint,
+                amount = 1
+            };
+            inventory.AddItem(blueprintItem);
         }
     }
 
@@ -57,5 +70,24 @@ public class Tutorial : MonoBehaviour
     {
         hospitalButton.SetActive(false);
         panelUI.SetActive(false);
+    }
+    
+    private void OnEnable()
+    {
+        UI_Crafting.OnItemCrafted += OnPlantBlueprintCrafted;
+    }
+
+    private void OnPlantBlueprintCrafted(ItemSO obj)
+    {
+        if (exclamationMark != null) exclamationMark.SetActive(true);
+        foreach (var word in unlockableWords)
+        {
+            word.SetActive(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        UI_Crafting.OnItemCrafted -= OnPlantBlueprintCrafted;
     }
 }

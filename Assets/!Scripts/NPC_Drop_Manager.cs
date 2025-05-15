@@ -11,7 +11,7 @@ public class NPC_Drop_Manager : MonoBehaviour
     {
         correctDrops++;
         Debug.Log(correctDrops);
-        if (correctDrops == 4)
+        if (correctDrops == 3)
         {
             hasCompleted = true;
         }
