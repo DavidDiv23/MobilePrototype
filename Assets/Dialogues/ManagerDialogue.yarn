@@ -1,0 +1,32 @@
+﻿title: ManagerDialogue
+tags:
+---
+
+Manager: Greetings, fellow feline! You must be the new organic intern at our Care Free Healthcare facility! My title is AI-ko 3500, Aiko for short and my primary purpose is to manage this facility to my creator’s standards. How can I register your name in my internal system?
+
+-> Kino: Ehm, the name is Kino-
+
+Manager: Great, KEE-no, it is with great pleasure to finally meet you! I will not keep you waiting and commence your training right away.
+
+Manager: As you might have observed, the facility currently houses… 1 patient, and I can’t seem to gain their trust in order to calculate the correct diagnosis.
+
+Manager: Therefore, your task is to establish trust by talking to the patients and utilize the correct treatment through the technology I can offer.
+
+-> Kino: Wait, so I have to talk to people?!
+
+Manager: Exactly! Any inconvenience this causes for you, please keep it to yourself as I do not have a drive containing complaints.
+
+Manager: Your first patient will be… A-NYAW, she rushed off, before I could have come up with a solution, but she might be still in the yard.
+
+Manager: You have to engage with her now, or your internship will be terminated with immediate effect. On your way now!
+
+<<set $popUpScreenTut = true>>
+
+===
+
+title: ManagerDialogueAfterAnya
+tags:
+---
+Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!
+<<set $readyToOpenDataReport = true>>
+===

@@ -106,6 +106,8 @@ MonoBehaviour:
   - {fileID: 1882945678858491248}
   - {fileID: 7049097040405449199}
   - {fileID: 6227195409138249523}
+  inventoryManager: {fileID: 0}
+  plantItemSO: {fileID: 11400000, guid: dab3a62bf1ff3834c9aece111d623e70, type: 2}
 --- !u!1001 &28650859133226475
 PrefabInstance:
   m_ObjectHideFlags: 0

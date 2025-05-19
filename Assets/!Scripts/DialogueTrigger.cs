@@ -9,21 +9,22 @@ using Yarn.Unity;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    
     [SerializeField] private DialogueRunner dialogueRunner;
-    public GameObject[] unlockableWords;
+    public string dialogueNodeName;
 
-    public Camera mainCamera;
-    public bool hasStartedDialogue;
-    private UI_Handler uiHandler;
-    public bool isInteracting;
+
     public GameObject exclamationMark;
-    
+    public Camera mainCamera;
+    public CameraZoomScript cameraZoom;
+
+    private UI_Handler uiHandler;
+    public bool hasStartedDialogue;
+
     private void Start()
     {
-        dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
-        dialogueRunner.onDialogueStart.AddListener(OnDialogueStart);
         uiHandler = FindObjectOfType<UI_Handler>();
+        dialogueRunner.onDialogueStart.AddListener(OnDialogueStart);
+        dialogueRunner.onDialogueComplete.AddListener(CheckIfMyDialogueFinished);
     }
 
     private void OnDialogueStart()
@@ -31,21 +32,45 @@ public class DialogueTrigger : MonoBehaviour
         uiHandler.HideCanvas();
     }
 
-
     public void StartingDialogue()
     {
-        dialogueRunner.StartDialogue("AnyaIntro");
+        var variableStorage = dialogueRunner.VariableStorage;
+        
+        if (dialogueNodeName == "AnyaIntro" || dialogueNodeName == "AnyaDialogueManager")
+        {
+            variableStorage.TryGetValue("$hasFinishedIntro", out bool hasFinishedIntro);
+            
+            if (hasFinishedIntro)
+            {
+                dialogueRunner.StartDialogue("AnyaDialogueManager");
+            }
+            else
+            {
+                dialogueRunner.StartDialogue("AnyaIntro");
+            }
+        }
+        else
+        {
+            dialogueRunner.StartDialogue(dialogueNodeName);
+        }
+
         hasStartedDialogue = true;
     }
 
-    public void OnDialogueComplete()
+    private void CheckIfMyDialogueFinished()
     {
-        hasStartedDialogue = false;
-        exclamationMark.SetActive(true);
-
-        foreach (var word in unlockableWords)
+        if (dialogueRunner.CurrentNodeName == "AnyaIntro")
         {
-            word.SetActive(true);
+            OnMyDialogueComplete();
         }
     }
+
+    private void OnMyDialogueComplete()
+    {
+        hasStartedDialogue = false;
+  
+        if (cameraZoom != null) cameraZoom.ResetCamera();
+        
+    }
+    
 }

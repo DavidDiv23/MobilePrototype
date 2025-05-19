@@ -1,0 +1,81 @@
+﻿title: AnyaIntro
+---
+
+Kino: Hi erm… are you ANYAW- Anya? 
+
+Anya: Yeah, and who might you be? Are you also going to make a fool of me, like that rude robot?!
+-> I’m the new nurse.
+    Kino: My-my name is Kino, the new nurse-- intern.  
+    Anya: And what do you want from me?
+-> I don’t want to make fun of you.
+    Kino: I’m very new to this and it’s gonna sound very awkward, but I’m sorry if my boss made you feel that way. My-my name is Kino, the new nurse-- intern.
+    Anya: Okay… apology accepted.
+    
+Kino: Look, the thing is… I need to help you, or Aiko will fire me, and this is only my first day! So, if there is anything you can tell me to treat you, it would mean a great deal for me. 
+
+Anya: Hmm, that robot really is mean to everyone. Alright, maybe you can help me. I’ve been experiencing some dizziness and anxiety lately; I probably need to get my blood pressure checked. 
+
+Kino: Then let’s go inside to get that looked at!  
+
+<<set $hasFinishedIntro = true>>
+===
+
+title: AnyaDialogueManager
+---
+Have you spoken to the manager yet?
+===
+
+title: AnyaDialoguePriorToManager
+---
+<<!if $hasSpokenToManager>>
+Anya: Have you learned anything new?
+...
+===
+
+title: PlayerReturnsToAnya
+---
+Anya: Have you learned anything new?
+-> Tell her
+-> Yes, I have found a treatment
+    Kino: Yes! Based on your symptoms, we have to monitor your blood pressure for some time to see if there are any drastic changes that we need to account when determining the correct treatment. While this is happening, I can also give you this Automatic Pill Dispenser that reminds you to take calming medicine for your anxiety.  
+
+Anya: I have anxiety, high blood pressure and I’m pretty forgetful. 
+
+
+
+
+
+
+
+
+title: OldAnyaDialogue
+---
+Anya: You seem a little nervous..
+-> Yeah, this is all very new for me.
+
+Anya: Haha that's honestly fine! I am happy to have you here.
+-> Is there anything I can help you with?
+
+Anya: I've been here for quite a while honestly. I have <color=\#FFA500>high blood pressure</color> from time to time.
+-> That sounds pretty bad..
+
+Anya: Uhh yeah.. it is..
+…
+
+-> What's the cause?
+
+Anya: I've been <color=\#FFA500>struggling with my anxiety</color>. It’s been getting pretty extreme sometimes.  
+Anya: Before you came here the robot was the nurse here. However due to his programming he just repeated the same words over and over.
+
+-> It sure is an interesting decision.
+
+Anya: Yeah. He’s funny, don't get me wrong, but he didn’t really help me that much.  
+Anya: He made me feel more alone, really. I don’t want to be treated by a machine like that..
+
+-> Well.. I hope I can help you out!
+
+Anya: I need to get my <color=\#FFA500>blood pressure</color> checked and I need to take a pill for my anxiety.  
+Anya: Me being me, I <color=\#FFA500>forgot to ask</color> sometimes and the robot wouldn’t give me my treatment.  
+Anya: If you could help me out with that, that would be amazing.
+
+===
