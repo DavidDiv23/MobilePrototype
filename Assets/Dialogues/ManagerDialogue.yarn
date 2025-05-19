@@ -24,7 +24,6 @@ Manager: You have to engage with her now, or your internship will be terminated 
 <<set $popUpScreenTut = true>>
 
 <<endif>>
-<<jump ManagerDialogueAfterAnya>>
 ===
 
 title: ManagerDialogueAfterAnya

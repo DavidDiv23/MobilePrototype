@@ -23,13 +23,13 @@ public class NPC_Drop_Manager : MonoBehaviour
         }
     }
     
-    public void RegisterDragAndDrop()
+    public void RegisterPills()
     {
         dragAndDropValue++;
         Debug.Log(dragAndDropValue);
         if (dragAndDropValue == 4)
         {
-            hasCompletedDragAndDrop = true;
+            GiveBluePrint();
         }
     }
     

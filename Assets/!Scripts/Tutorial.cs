@@ -31,7 +31,6 @@ public class Tutorial : MonoBehaviour
         dialogueRunner.onDialogueComplete.AddListener(CheckIntroComplete);
         dialogueRunner.onDialogueComplete.AddListener(CraftingBlueprint);
         
-        
     }
 
     private void CraftingBlueprint()
@@ -58,6 +57,7 @@ public class Tutorial : MonoBehaviour
             panelUI.SetActive(true);
             hospitalButton.SetActive(true);
             Debug.Log("Intro Complete – Show tutorial panel");
+            
         }
     }
 
