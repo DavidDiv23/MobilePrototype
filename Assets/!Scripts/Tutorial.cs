@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Yarn.Unity;
@@ -12,6 +14,7 @@ public class Tutorial : MonoBehaviour
     public NavMeshAgent playerAgent;
     public GameObject hospitalEntrance;
     public DialogueRunner dialogueRunner;
+    public string dialogueNodeName;
     public GameObject hospitalButton;
     
     public GameObject exclamationMark;
@@ -30,7 +33,6 @@ public class Tutorial : MonoBehaviour
         
         dialogueRunner.onDialogueComplete.AddListener(CheckIntroComplete);
         dialogueRunner.onDialogueComplete.AddListener(CraftingBlueprint);
-        
     }
 
     private void CraftingBlueprint()
@@ -46,21 +48,43 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    public void StartingDialogue()
+    {
+        var variableStorage = dialogueRunner.VariableStorage;
 
-    private void CheckIntroComplete()
+        if (dialogueNodeName == "ManagerDialogue" || dialogueNodeName == "ManagerDialogueAfterAnya")
+        {
+            variableStorage.TryGetValue("$popUpScreenTut", out bool popUpScreenTut);
+            
+            if (popUpScreenTut)
+            {
+                dialogueRunner.StartDialogue("ManagerDialogueAfterAnya");
+            }
+            else
+            {
+                dialogueRunner.StartDialogue("ManagerDialogue");
+            }
+        }
+        else
+        {
+            dialogueRunner.StartDialogue(dialogueNodeName);
+        }
+    }
+
+    public void CheckIntroComplete()
     {
         if (dialogueRunner.CurrentNodeName == "AnyaIntro" &&
             yarnVariables != null &&
-            yarnVariables.TryGetValue("$hasFinishedIntro", out bool hasFinished) &&
+            yarnVariables.TryGetValue("$popUpScreenTut", out bool hasFinished) &&
             hasFinished)
         {
             panelUI.SetActive(true);
             hospitalButton.SetActive(true);
-            Debug.Log("Intro Complete – Show tutorial panel");
-            
+            dialogueNodeName = "ManagerDialogueAfterAnya";
         }
     }
 
+    
     public void GoToEntrance()
     {
         playerAgent.SetDestination(hospitalEntrance.transform.position);

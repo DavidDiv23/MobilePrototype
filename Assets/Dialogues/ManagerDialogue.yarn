@@ -2,7 +2,6 @@
 tags:
 ---
 
-<<if $popUpScreenTut == false>>
 Manager: Greetings, fellow feline! You must be the new organic intern at our Care Free Healthcare facility! My title is AI-ko 3500, Aiko for short and my primary purpose is to manage this facility to my creator’s standards. How can I register your name in my internal system?
 
 -> Kino: Ehm, the name is Kino-
@@ -23,7 +22,6 @@ Manager: You have to engage with her now, or your internship will be terminated 
 
 <<set $popUpScreenTut = true>>
 
-<<endif>>
 ===
 
 title: ManagerDialogueAfterAnya

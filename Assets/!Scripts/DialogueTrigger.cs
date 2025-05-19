@@ -10,7 +10,7 @@ using Yarn.Unity;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private DialogueRunner dialogueRunner;
-    public string dialogueNodeName; // Assign per character in Inspector
+    public string dialogueNodeName;
 
 
     public GameObject exclamationMark;
