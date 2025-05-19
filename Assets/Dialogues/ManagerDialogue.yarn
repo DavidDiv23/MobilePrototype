@@ -30,8 +30,3 @@ tags:
 Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!
 <<set $readyToOpenDataReport = true>>
 ===
-
-title: ManagerDialoguePlantingTrees
-tags:
----
-Aiko: This is how you plant trees. Click on the plant to collect it yada yada...

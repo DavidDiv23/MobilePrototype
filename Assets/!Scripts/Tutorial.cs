@@ -22,8 +22,7 @@ public class Tutorial : MonoBehaviour
     
     public Inventory inventory;
     public ItemSO pillsBlueprint;
-
-    public GameObject treatingCanva;
+    
     private InMemoryVariableStorage yarnVariables;
 
     private void Start()
@@ -35,7 +34,6 @@ public class Tutorial : MonoBehaviour
         dialogueRunner.onDialogueComplete.AddListener(CheckIntroComplete);
         dialogueRunner.onDialogueComplete.AddListener(CraftingBlueprint);
     }
-    
 
     private void CraftingBlueprint()
     {
@@ -61,6 +59,10 @@ public class Tutorial : MonoBehaviour
             if (popUpScreenTut)
             {
                 dialogueRunner.StartDialogue("ManagerDialogueAfterAnya");
+            }
+            else
+            {
+                dialogueRunner.StartDialogue("ManagerDialogue");
             }
         }
         else
