@@ -10,41 +10,80 @@ using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
-    public GameObject panelUI;
     public NavMeshAgent playerAgent;
+    public GameObject panelUI;
     public GameObject hospitalEntrance;
-    public DialogueRunner dialogueRunner;
-    public string dialogueNodeName;
     public GameObject hospitalButton;
-    
     public GameObject exclamationMark;
     public GameObject[] unlockableWords;
+    public GameObject plantPanel;
+    public GameObject UICraftingButton;
+    public GameObject arrow1;
+    public GameObject arrow2;
+    public DialogueRunner dialogueRunner;
+    public string dialogueNodeName;
+    
     
     public Inventory inventory;
+    public InventoryManager inventoryManager;
     public ItemSO pillsBlueprint;
+    public ItemSO plantItemSO;
     
     private InMemoryVariableStorage yarnVariables;
+    public UI_Crafting uiCrafting;
 
     private void Start()
     {
         panelUI.SetActive(false);
         hospitalButton.SetActive(false);
+        arrow1.SetActive(false);
+        arrow2.SetActive(false);
         yarnVariables = dialogueRunner.VariableStorage as InMemoryVariableStorage;
         
         dialogueRunner.onDialogueComplete.AddListener(CheckIntroComplete);
-        dialogueRunner.onDialogueComplete.AddListener(CraftingBlueprint);
+        dialogueRunner.onDialogueComplete.AddListener(PlantCanvaShowUp);
+        dialogueRunner.onDialogueComplete.AddListener(OpenCraftingWindow);
+        
     }
 
-    private void CraftingBlueprint()
+    private void PlantCanvaShowUp()
     {
         if (dialogueRunner.CurrentNodeName == "ManagerDialogueAfterAnya")
         {
+            plantPanel.SetActive(true);
             Item blueprintItem = new Item
             {
                 itemData = pillsBlueprint,
                 amount = 1
             };
             inventory.AddItem(blueprintItem);
+            
+            StartCoroutine(PlayNextDialogue("ManagerDialogueForPills"));
+        }
+    }
+
+    private IEnumerator PlayNextDialogue(string nextNode)
+    {
+        yield return null;
+        dialogueRunner.StartDialogue(nextNode);
+        Item harvestedItem = new Item
+        {
+            itemData = plantItemSO,
+            amount = 3
+        };
+        inventoryManager.AddItem(harvestedItem);
+    }
+
+    public void HideButtons()
+    {
+        plantPanel.SetActive(false);
+    }
+
+    private void OpenCraftingWindow()
+    {
+        if (dialogueNodeName == "ManagerDialogueForPills")
+        {
+            uiCrafting.gameObject.SetActive(true);
         }
     }
 

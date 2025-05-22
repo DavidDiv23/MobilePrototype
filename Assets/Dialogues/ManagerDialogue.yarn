@@ -30,3 +30,24 @@ tags:
 Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!
 <<set $readyToOpenDataReport = true>>
 ===
+
+title: ManagerDialogueForPills
+tags:
+---
+Kino: Hi, Anya told me she needs pills.
+
+Aiko: Oh yeah she does, I forgot to tell you that. One of your tasks would be to remind her to take her pills.
+
+Aiko: Let me show you how.
+
+Aiko: You click on the button to plant and collect the plants.
+
+<<set $readyToOpenPlantPanel = true>>
+===
+
+title: CraftingPills
+tags:
+---
+Aiko: Great! Now let me show you how to craft the pills.
+Aiko: You click on the button to open the crafting panel.
+===

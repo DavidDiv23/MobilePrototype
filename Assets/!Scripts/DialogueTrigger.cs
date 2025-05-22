@@ -72,5 +72,4 @@ public class DialogueTrigger : MonoBehaviour
         if (cameraZoom != null) cameraZoom.ResetCamera();
         
     }
-    
 }
