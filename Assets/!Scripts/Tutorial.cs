@@ -17,7 +17,7 @@ public class Tutorial : MonoBehaviour
     public GameObject exclamationMark;
     public GameObject[] unlockableWords;
     public GameObject plantPanel;
-    public GameObject UICraftingButton;
+    public GameObject UICraftingWindow;
     public GameObject arrow1;
     public GameObject arrow2;
     public DialogueRunner dialogueRunner;
@@ -26,8 +26,8 @@ public class Tutorial : MonoBehaviour
     
     public Inventory inventory;
     public InventoryManager inventoryManager;
-    public ItemSO pillsBlueprint;
     public ItemSO plantItemSO;
+    public ItemSO pillsBlueprint;
     
     private InMemoryVariableStorage yarnVariables;
     public UI_Crafting uiCrafting;
@@ -66,12 +66,16 @@ public class Tutorial : MonoBehaviour
     {
         yield return null;
         dialogueRunner.StartDialogue(nextNode);
+
         Item harvestedItem = new Item
         {
             itemData = plantItemSO,
             amount = 3
         };
         inventoryManager.AddItem(harvestedItem);
+        UICraftingWindow.SetActive(true);
+        arrow1.SetActive(true);
+        arrow2.SetActive(true);
     }
 
     public void HideButtons()
