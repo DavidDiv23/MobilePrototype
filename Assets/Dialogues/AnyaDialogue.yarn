@@ -40,8 +40,17 @@ Anya: Have you learned anything new?
     Kino: Yes! Based on your symptoms, we have to monitor your blood pressure for some time to see if there are any drastic changes that we need to account when determining the correct treatment. While this is happening, I can also give you this Automatic Pill Dispenser that reminds you to take calming medicine for your anxiety.  
 
 Anya: I have anxiety, high blood pressure and I’m pretty forgetful. 
+===
 
-
+title: CompletingPillsTask
+tags:
+---
+Anya: Oh, thank you for the pills... I feel bad for not being able to take them myself.
+Kino: No problem, I’m here to help you.
+Anya: Still... I do not like it, but thank you.
+Kino: Thank you for telling me, maybe the manager knows a way to make it easier for you.
+<<set $completedPillsTask = true>>
+===
 
 
 

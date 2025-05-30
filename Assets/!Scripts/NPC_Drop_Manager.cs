@@ -9,6 +9,7 @@ public class NPC_Drop_Manager : MonoBehaviour
     public bool hasCompleted = false;
     public int dragAndDropValue = 0;
     public bool hasCompletedDragAndDrop = false;
+    public GameObject dragAndDropObject;
     
     public DialogueRunner dialogueRunner;
 
@@ -30,6 +31,9 @@ public class NPC_Drop_Manager : MonoBehaviour
         if (dragAndDropValue == 4)
         {
             GiveBluePrint();
+            dialogueRunner.StartDialogue("CompletingPillsTask");
+            hasCompletedDragAndDrop = true;
+            dragAndDropObject.SetActive(false);
         }
     }
     
