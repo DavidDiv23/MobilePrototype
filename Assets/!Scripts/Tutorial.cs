@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Yarn.Unity;
@@ -21,16 +19,55 @@ public class Tutorial : MonoBehaviour
     public GameObject arrow1;
     public GameObject arrow2;
     public DialogueRunner dialogueRunner;
-    public string dialogueNodeName;
-    
     
     public Inventory inventory;
     public InventoryManager inventoryManager;
     public ItemSO plantItemSO;
     public ItemSO pillsBlueprint;
-    
-    private InMemoryVariableStorage yarnVariables;
     public UI_Crafting uiCrafting;
+
+    private InMemoryVariableStorage yarnVariables;
+
+    private class DialogueStep
+    {
+        public string NodeName;
+        public string CompletionVariable;
+        public Action PostDialogueAction;
+
+        public DialogueStep(string nodeName, string completionVar, Action postAction = null)
+        {
+            NodeName = nodeName;
+            CompletionVariable = completionVar;
+            PostDialogueAction = postAction;
+        }
+    }
+
+    private List<DialogueStep> dialogueSteps;
+    private DialogueStep currentStep;
+
+    private void Awake()
+    {
+        yarnVariables = dialogueRunner.VariableStorage as InMemoryVariableStorage;
+
+        dialogueSteps = new List<DialogueStep>
+        {
+            new DialogueStep("ManagerDialogue", "$finishedManagerDialogue"),
+            new DialogueStep("ManagerDialogueAfterAnya", "$finishedAfterAnya", () =>
+            {
+
+                inventory.AddItem(new Item { itemData = pillsBlueprint, amount = 1 });
+            }),
+            new DialogueStep("ManagerDialogueForPills", "$finishedPillDialogue", () =>
+            {
+                plantPanel.SetActive(true);
+                inventoryManager.AddItem(new Item { itemData = plantItemSO, amount = 3 });
+                UICraftingWindow.SetActive(true);
+                arrow1.SetActive(true);
+                arrow2.SetActive(true);
+                uiCrafting.gameObject.SetActive(true);
+            }),
+        };
+    }
 
     private void Start()
     {
@@ -38,83 +75,29 @@ public class Tutorial : MonoBehaviour
         hospitalButton.SetActive(false);
         arrow1.SetActive(false);
         arrow2.SetActive(false);
-        yarnVariables = dialogueRunner.VariableStorage as InMemoryVariableStorage;
-        
-        dialogueRunner.onDialogueComplete.AddListener(CheckIntroComplete);
-        dialogueRunner.onDialogueComplete.AddListener(PlantCanvaShowUp);
-        dialogueRunner.onDialogueComplete.AddListener(OpenCraftingWindow);
-        
-    }
 
-    private void PlantCanvaShowUp()
-    {
-        if (dialogueRunner.CurrentNodeName == "ManagerDialogueAfterAnya")
-        {
-            plantPanel.SetActive(true);
-            Item blueprintItem = new Item
-            {
-                itemData = pillsBlueprint,
-                amount = 1
-            };
-            inventory.AddItem(blueprintItem);
-            
-            StartCoroutine(PlayNextDialogue("ManagerDialogueForPills"));
-        }
-    }
-
-    private IEnumerator PlayNextDialogue(string nextNode)
-    {
-        yield return null;
-        dialogueRunner.StartDialogue(nextNode);
-
-        Item harvestedItem = new Item
-        {
-            itemData = plantItemSO,
-            amount = 3
-        };
-        inventoryManager.AddItem(harvestedItem);
-        UICraftingWindow.SetActive(true);
-        arrow1.SetActive(true);
-        arrow2.SetActive(true);
-    }
-
-    public void HideButtons()
-    {
-        plantPanel.SetActive(false);
-    }
-
-    private void OpenCraftingWindow()
-    {
-        if (dialogueNodeName == "ManagerDialogueForPills")
-        {
-            uiCrafting.gameObject.SetActive(true);
-        }
+        dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
     }
 
     public void StartingDialogue()
     {
-        var variableStorage = dialogueRunner.VariableStorage;
+        if (yarnVariables == null)
+            yarnVariables = dialogueRunner.VariableStorage as InMemoryVariableStorage;
 
-        if (dialogueNodeName == "ManagerDialogue" || dialogueNodeName == "ManagerDialogueAfterAnya")
+        foreach (var step in dialogueSteps)
         {
-            variableStorage.TryGetValue("$popUpScreenTut", out bool popUpScreenTut);
-            
-            if (popUpScreenTut)
+            if (!yarnVariables.TryGetValue(step.CompletionVariable, out bool isDone) || !isDone)
             {
-                dialogueRunner.StartDialogue("ManagerDialogueAfterAnya");
-            }
-            else
-            {
-                dialogueRunner.StartDialogue("ManagerDialogue");
+                currentStep = step;
+                dialogueRunner.StartDialogue(step.NodeName);
+                return;
             }
         }
-        else
-        {
-            dialogueRunner.StartDialogue(dialogueNodeName);
-        }
+        currentStep = null;
+        dialogueRunner.StartDialogue("RepeatOrFallbackDialogue");
     }
 
-    public void CheckIntroComplete()
+    private void OnDialogueComplete()
     {
         if (dialogueRunner.CurrentNodeName == "AnyaIntro" &&
             yarnVariables != null &&
@@ -123,11 +106,17 @@ public class Tutorial : MonoBehaviour
         {
             panelUI.SetActive(true);
             hospitalButton.SetActive(true);
-            dialogueNodeName = "ManagerDialogueAfterAnya";
         }
+        
+        currentStep?.PostDialogueAction?.Invoke();
+        currentStep = null;
     }
 
-    
+    public void HideButtons()
+    {
+        plantPanel.SetActive(false);
+    }
+
     public void GoToEntrance()
     {
         playerAgent.SetDestination(hospitalEntrance.transform.position);
@@ -138,10 +127,15 @@ public class Tutorial : MonoBehaviour
         hospitalButton.SetActive(false);
         panelUI.SetActive(false);
     }
-    
+
     private void OnEnable()
     {
         UI_Crafting.OnItemCrafted += OnPlantBlueprintCrafted;
+    }
+
+    private void OnDisable()
+    {
+        UI_Crafting.OnItemCrafted -= OnPlantBlueprintCrafted;
     }
 
     private void OnPlantBlueprintCrafted(ItemSO obj)
@@ -151,10 +145,5 @@ public class Tutorial : MonoBehaviour
         {
             word.SetActive(true);
         }
-    }
-
-    private void OnDisable()
-    {
-        UI_Crafting.OnItemCrafted -= OnPlantBlueprintCrafted;
     }
 }

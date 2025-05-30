@@ -20,14 +20,15 @@ Manager: Your first patient will be… A-NYAW, she rushed off, before I could ha
 
 Manager: You have to engage with her now, or your internship will be terminated with immediate effect. On your way now!
 
+<<set $finishedManagerDialogue = true>>
 <<set $popUpScreenTut = true>>
-
 ===
 
 title: ManagerDialogueAfterAnya
 tags:
 ---
 Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!
+<<set $finishedAfterAnya = true>>
 <<set $readyToOpenDataReport = true>>
 ===
 
@@ -42,6 +43,7 @@ Aiko: Let me show you how.
 
 Aiko: You click on the button to plant and collect the plants.
 
+<<set $finishedPillDialogue = true>>
 <<set $readyToOpenPlantPanel = true>>
 ===
 
