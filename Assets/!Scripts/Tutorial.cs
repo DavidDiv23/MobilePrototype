@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NodeCanvas.Tasks.Actions;
 using UnityEngine;
 using UnityEngine.AI;
 using Yarn.Unity;
@@ -61,12 +62,16 @@ public class Tutorial : MonoBehaviour
             {
                 plantPanel.SetActive(true);
                 inventoryManager.AddItem(new Item { itemData = plantItemSO, amount = 3 });
+            }),
+            new DialogueStep("CraftingPills", "$finishedCraftingDialogue", () =>
+            {
                 UICraftingWindow.SetActive(true);
                 arrow1.SetActive(true);
                 arrow2.SetActive(true);
-                uiCrafting.gameObject.SetActive(true);
             }),
+            new DialogueStep("AdministratingPills", "$readyToAdministerPills"),
         };
+        
     }
 
     private void Start()
@@ -95,6 +100,15 @@ public class Tutorial : MonoBehaviour
         }
         currentStep = null;
         dialogueRunner.StartDialogue("RepeatOrFallbackDialogue");
+    }
+
+    public void StartCraftingDialogue()
+    {
+        currentStep = dialogueSteps.Find(step => step.NodeName == "CraftingPills");
+        if (currentStep != null)
+        {
+            dialogueRunner.StartDialogue(currentStep.NodeName);
+        }
     }
 
     private void OnDialogueComplete()
@@ -141,9 +155,20 @@ public class Tutorial : MonoBehaviour
     private void OnPlantBlueprintCrafted(ItemSO obj)
     {
         if (exclamationMark != null) exclamationMark.SetActive(true);
-        foreach (var word in unlockableWords)
+        arrow1.SetActive(false);
+        arrow2.SetActive(false);
+        // foreach (var word in unlockableWords)
+        // {
+        //     word.SetActive(true);
+        // }
+        StartDialogueByNodeName("AdministratingPills");
+    }
+    private void StartDialogueByNodeName(string nodeName)
+    {
+        currentStep = dialogueSteps.Find(step => step.NodeName == nodeName);
+        if (currentStep != null)
         {
-            word.SetActive(true);
+            dialogueRunner.StartDialogue(currentStep.NodeName);
         }
     }
 }

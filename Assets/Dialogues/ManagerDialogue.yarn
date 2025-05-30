@@ -52,4 +52,12 @@ tags:
 ---
 Aiko: Great! Now let me show you how to craft the pills.
 Aiko: You click on the button to open the crafting panel.
+<<set $finishedCraftingDialogue = true>>
+===
+
+title: AdministratingPills
+tags:
+---
+Aiko: Great! Now you can give the pills to Anya.
+<<set $readyToAdministerPills = true>>
 ===

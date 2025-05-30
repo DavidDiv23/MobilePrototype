@@ -4164,6 +4164,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 919132147545465727}
+        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
+        m_MethodName: StartCraftingDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &335826211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31428,7 +31440,6 @@ MonoBehaviour:
   arrow1: {fileID: 1589447739}
   arrow2: {fileID: 1708976848}
   dialogueRunner: {fileID: 3579681406051411869}
-  dialogueNodeName: ManagerDialogue
   inventory: {fileID: 1924822979}
   inventoryManager: {fileID: 1924822981}
   plantItemSO: {fileID: 11400000, guid: dab3a62bf1ff3834c9aece111d623e70, type: 2}
@@ -34761,6 +34772,10 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 1729567557}
+    - target: {fileID: 7463597381964813904, guid: 3f6056de43e25b245b4dbf9d1a0a3af8, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 3579681406051411869}
     - target: {fileID: 7463597381964813904, guid: 3f6056de43e25b245b4dbf9d1a0a3af8, type: 3}
       propertyPath: dialogueTrigger
       value: 

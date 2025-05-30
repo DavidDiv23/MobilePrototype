@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using Yarn;
+using Yarn.Unity;
 
 public class SimpleMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
     public Camera mainCam;
     public DialogueTrigger dialogueTrigger;
+    public DialogueRunner dialogue;
+    public CameraZoomScript cameraZoom;
 
     private void Start()
     {
@@ -14,8 +18,11 @@ public class SimpleMovement : MonoBehaviour
     }
     private void Update()
     {
-        if(dialogueTrigger.hasStartedDialogue)
+        if (dialogue.IsDialogueRunning)
+        {
             return;
+        }
+            
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
