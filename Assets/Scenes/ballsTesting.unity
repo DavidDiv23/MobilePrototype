@@ -4381,7 +4381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.083397, y: -22.35442}
+  m_AnchoredPosition: {x: 10.2, y: -23.602}
   m_SizeDelta: {x: 128.1017, y: 47.2044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380037867
@@ -5758,7 +5758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61.10797, y: 19.9857}
+  m_AnchoredPosition: {x: 61.8, y: 22.7}
   m_SizeDelta: {x: 197.1241, y: 59.955}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &484796949
@@ -6267,6 +6267,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1461734605599946133, guid: d664702021ab6db47a7d185550974af3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2234576297032314671, guid: d664702021ab6db47a7d185550974af3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.06
@@ -6310,6 +6314,10 @@ PrefabInstance:
     - target: {fileID: 5786713411511265980, guid: d664702021ab6db47a7d185550974af3, type: 3}
       propertyPath: m_TagString
       value: Interior
+      objectReference: {fileID: 0}
+    - target: {fileID: 5786713411511265980, guid: d664702021ab6db47a7d185550974af3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7726454705516472309, guid: d664702021ab6db47a7d185550974af3, type: 3}
       propertyPath: externalCamera
@@ -7835,7 +7843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.107857, y: -1.558815}
+  m_AnchoredPosition: {x: -41.107857, y: 0.000009059906}
   m_SizeDelta: {x: 247.1246, y: 53.4157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &631822234
@@ -26070,12 +26078,13 @@ MonoBehaviour:
   UICraftingWindow: {fileID: 951666898}
   arrow1: {fileID: 1589447739}
   arrow2: {fileID: 1708976848}
-  dialogueRunner: {fileID: 3579681406051411869}
+  patientLog: {fileID: 2000337416}
   inventory: {fileID: 1924822979}
   inventoryManager: {fileID: 1924822981}
   plantItemSO: {fileID: 11400000, guid: dab3a62bf1ff3834c9aece111d623e70, type: 2}
   pillsBlueprint: {fileID: 11400000, guid: e480d9797b8bbd44abe78d61c382ad20, type: 2}
   uiCrafting: {fileID: 951666899}
+  dialogueRunner: {fileID: 3579681406051411869}
 --- !u!1 &919132148032843522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 973a9662af94ac14fae2e6aeb08c4e14, type: 3}
