@@ -20,7 +20,7 @@ public class NPC_Drop_Manager : MonoBehaviour
         if (correctDrops == 3)
         {
             hasCompleted = true;
-            dialogueRunner.StartDialogue("");
+            dialogueRunner.StartDialogue("FinishingPatientLog");
         }
     }
     

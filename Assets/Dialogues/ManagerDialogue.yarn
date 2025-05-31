@@ -68,3 +68,12 @@ tags:
 Aiko: Let me show you how to open the patient log.
 <<set $finishedPatientLogDialogue = true>>
 ===
+
+title: FinishingPatientLog
+tags:
+---
+Aiko: Great! Not bad, not bad. Alright, let's see what you have learned about Anya.
+Aiko: Hmm, my programming suggests the following treatment:
+Aiko: You need to choose which blueprint to craft.
+<<set $completedPatientLogDialogue = true>>
+===
