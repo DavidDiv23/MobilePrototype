@@ -19,7 +19,7 @@ public class Tutorial : MonoBehaviour
     public GameObject UICraftingWindow;
     public GameObject arrow1;
     public GameObject arrow2;
-    public DialogueRunner dialogueRunner;
+    public GameObject patientLog;
     
     public Inventory inventory;
     public InventoryManager inventoryManager;
@@ -27,6 +27,7 @@ public class Tutorial : MonoBehaviour
     public ItemSO pillsBlueprint;
     public UI_Crafting uiCrafting;
 
+    public DialogueRunner dialogueRunner;
     private InMemoryVariableStorage yarnVariables;
 
     private class DialogueStep
@@ -70,6 +71,14 @@ public class Tutorial : MonoBehaviour
                 arrow2.SetActive(true);
             }),
             new DialogueStep("AdministratingPills", "$readyToAdministerPills"),
+            new DialogueStep("PatientLog", "$finishedPatientLogDialogue", () =>
+            {
+                patientLog.SetActive(true);
+                foreach (var word in unlockableWords)
+                {
+                    word.SetActive(true);
+                }
+            }),
         };
         
     }
@@ -157,10 +166,7 @@ public class Tutorial : MonoBehaviour
         if (exclamationMark != null) exclamationMark.SetActive(true);
         arrow1.SetActive(false);
         arrow2.SetActive(false);
-        // foreach (var word in unlockableWords)
-        // {
-        //     word.SetActive(true);
-        // }
+        
         StartDialogueByNodeName("AdministratingPills");
     }
     private void StartDialogueByNodeName(string nodeName)

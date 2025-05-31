@@ -61,3 +61,10 @@ tags:
 Aiko: Great! Now you can give the pills to Anya.
 <<set $readyToAdministerPills = true>>
 ===
+
+title: PatientLog
+tags:
+---
+Aiko: Let me show you how to open the patient log.
+<<set $finishedPatientLogDialogue = true>>
+===
