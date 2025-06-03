@@ -22,6 +22,9 @@ Shader "Lpk/LightModel/ToonLightBase"
         [Space]   
         _OutlineWidth      ("OutlineWidth", Range(0.0, 1.0))      = 0.15
         _OutlineColor      ("OutlineColor", Color)                = (0.0, 0.0, 0.0, 1)
+
+        [Space]
+        _UVOffset ("UV Offset", Vector) = (0, 0, 1, 1)
     }
     SubShader
     {
@@ -67,6 +70,8 @@ Shader "Lpk/LightModel/ToonLightBase"
                 float _RimStepSmooth;
                 float _RimStep;
                 float4 _RimColor;
+                float4 _UVOffset;
+
             CBUFFER_END
 
             struct Attributes
@@ -124,7 +129,7 @@ Shader "Lpk/LightModel/ToonLightBase"
             {
                 UNITY_SETUP_INSTANCE_ID(input);
 
-                float2 uv = input.uv;
+                float2 uv = input.uv * _UVOffset.zw + _UVOffset.xy;
                 float3 N = normalize(input.normalWS.xyz);
                 float3 T = normalize(input.tangentWS.xyz);
                 float3 B = normalize(input.bitangentWS.xyz);
