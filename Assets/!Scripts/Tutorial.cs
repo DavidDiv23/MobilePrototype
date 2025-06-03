@@ -56,7 +56,6 @@ public class Tutorial : MonoBehaviour
             new DialogueStep("ManagerDialogue", "$finishedManagerDialogue"),
             new DialogueStep("ManagerDialogueAfterAnya", "$finishedAfterAnya", () =>
             {
-
                 inventory.AddItem(new Item { itemData = pillsBlueprint, amount = 1 });
             }),
             new DialogueStep("ManagerDialogueForPills", "$finishedPillDialogue", () =>
