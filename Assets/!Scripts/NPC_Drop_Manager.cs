@@ -13,7 +13,7 @@ public class NPC_Drop_Manager : MonoBehaviour
     
     public DialogueRunner dialogueRunner;
 
-    public void RegisterCorrectDrop()
+    public void RegisterWords()
     {
         correctDrops++;
         Debug.Log(correctDrops);

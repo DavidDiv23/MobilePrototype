@@ -8,7 +8,12 @@ public class ItemSlot : MonoBehaviour, IDropHandler
     public NPC_Drop_Manager dropManager;
 
     public string acceptedItemID;
-
+    public enum SlotType
+    {
+        PatientLog,
+        TreatCanvas
+    }
+    public SlotType slotType;
     public void OnDrop(PointerEventData eventData)
     {
         var draggableItem = eventData.pointerDrag?.GetComponent<DraggableItem>();
@@ -18,7 +23,14 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             {
                 draggableItem.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
 
-                dropManager.RegisterPills();
+                if (slotType == SlotType.PatientLog)
+                {
+                    dropManager.RegisterWords();
+                }
+                else if (slotType == SlotType.TreatCanvas)
+                {
+                    dropManager.RegisterPills();
+                }
             }
             else
             {
