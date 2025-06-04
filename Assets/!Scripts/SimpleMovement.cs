@@ -11,6 +11,7 @@ public class SimpleMovement : MonoBehaviour
     public DialogueTrigger dialogueTrigger;
     public DialogueRunner dialogue;
     public CameraZoomScript cameraZoom;
+    public Animator animator;
 
     private void Start()
     {
@@ -22,7 +23,9 @@ public class SimpleMovement : MonoBehaviour
         {
             return;
         }
-            
+
+        animator.SetFloat("Speed", agent.velocity.magnitude);
+
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
