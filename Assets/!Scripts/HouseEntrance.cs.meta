@@ -3,7 +3,23 @@ guid: fe3102332d0ab154c81744eb3f8ae304
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - externalCamera: {instanceID: 0}
+  - interiorCamera: {instanceID: 0}
+  - storageCamera: {instanceID: 0}
+  - patientCamera: {instanceID: 0}
+  - enterButton: {instanceID: 0}
+  - interiorSpawnPoint: {instanceID: 0}
+  - houseEntrance: {instanceID: 0}
+  - exitButton: {instanceID: 0}
+  - patientButton: {instanceID: 0}
+  - storageButton: {instanceID: 0}
+  - storageSpawnPoint: {instanceID: 0}
+  - patientSpawnPoint: {instanceID: 0}
+  - exteriorWorldSpaceCanvas: {instanceID: 0}
+  - interiorWorldSpaceCanvas: {instanceID: 0}
+  - simpleMovement: {instanceID: 0}
+  - canvasForInterior: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
