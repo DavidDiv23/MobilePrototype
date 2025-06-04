@@ -15,6 +15,7 @@ public class FaceControl : MonoBehaviour
     [Range(0, 7)]
     public int mouths;
 
+
     // Start is called before the first frame update
     void Start()
     {

@@ -14011,6 +14011,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ef4869682ee6c0d4a8ec6fb425ddb1d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1354073373}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ef4869682ee6c0d4a8ec6fb425ddb1d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1354073379}
   m_SourcePrefab: {fileID: 100100000, guid: ef4869682ee6c0d4a8ec6fb425ddb1d9, type: 3}
 --- !u!1 &1037669785
 GameObject:
@@ -18120,6 +18123,20 @@ MonoBehaviour:
   _serializedBlackboard: '{"_variables":{}}'
   _objectReferences: []
   _serializedVariables: []
+--- !u!114 &1354073379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354073370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e5e960f4e0681488f987c617ec663d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 525d445d4a776bf44ad2a34567e59492, type: 2}
+  face: 0
 --- !u!4 &1356448588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ef4869682ee6c0d4a8ec6fb425ddb1d9, type: 3}
@@ -30042,6 +30059,23 @@ MonoBehaviour:
   pillsBlueprint: {fileID: 11400000, guid: e480d9797b8bbd44abe78d61c382ad20, type: 2}
   uiCrafting: {fileID: 951666899}
   dialogueRunner: {fileID: 3579681406051411869}
+--- !u!114 &919132147545465729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147545465716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29bc87b59deee343bc4688decdc67ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matEyes: {fileID: 2100000, guid: b96620147dd15474f88e32e5ce238989, type: 2}
+  matMouth: {fileID: 2100000, guid: bec784afe25e38845976b27e6a9c1499, type: 2}
+  shaderPropertyName: _UVOffset
+  eyes: 0
+  mouths: 0
 --- !u!1 &919132148032843522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 973a9662af94ac14fae2e6aeb08c4e14, type: 3}
@@ -33470,6 +33504,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 593604602411831348, guid: 3f6056de43e25b245b4dbf9d1a0a3af8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 919132147545465727}
+    - targetCorrespondingSourceObject: {fileID: 593604602411831348, guid: 3f6056de43e25b245b4dbf9d1a0a3af8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919132147545465729}
     - targetCorrespondingSourceObject: {fileID: 5464061825862869045, guid: 3f6056de43e25b245b4dbf9d1a0a3af8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1693896318}
