@@ -1,34 +1,38 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using NodeCanvas.Tasks.Actions;
 using UnityEngine;
 using UnityEngine.AI;
-using Yarn.Unity;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class Tutorial : MonoBehaviour
 {
-    public NavMeshAgent playerAgent;
-    public GameObject panelUI;
-    public GameObject hospitalEntrance;
-    public GameObject hospitalButton;
-    public GameObject exclamationMark;
-    public GameObject[] unlockableWords;
-    public GameObject plantPanel;
-    public GameObject UICraftingWindow;
-    public GameObject arrow1;
-    public GameObject arrow2;
-    public GameObject patientLog;
-    
-    public Inventory inventory;
-    public InventoryManager inventoryManager;
-    public ItemSO plantItemSO;
-    public ItemSO pillsBlueprint;
-    public UI_Crafting uiCrafting;
+    [Header("Core Systems")]
+    [SerializeField] private NavMeshAgent playerAgent;
+    [SerializeField] private DialogueRunner dialogueRunner;
 
-    public DialogueRunner dialogueRunner;
+    [Header("UI & Interaction")]
+    [SerializeField] private GameObject panelUI;
+    [SerializeField] private GameObject hospitalEntrance;
+    [SerializeField] private GameObject hospitalButton;
+    [SerializeField] private GameObject exclamationMark;
+    [SerializeField] private GameObject[] unlockableWords;
+    [SerializeField] private GameObject plantPanel;
+    [SerializeField] private GameObject UICraftingWindow;
+    [SerializeField] private GameObject arrow1;
+    [SerializeField] private GameObject arrow2;
+    [SerializeField] private GameObject patientLog;
+
+    [Header("Inventory & Items")]
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private ItemSO plantItemSO;
+    [SerializeField] private ItemSO pillsBlueprint;
+    [SerializeField] private UI_Crafting uiCrafting;
+
     private InMemoryVariableStorage yarnVariables;
+    private DialogueStep currentStep;
+    private List<DialogueStep> dialogueSteps;
 
     private class DialogueStep
     {
@@ -44,42 +48,36 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    private List<DialogueStep> dialogueSteps;
-    private DialogueStep currentStep;
-
     private void Awake()
     {
         yarnVariables = dialogueRunner.VariableStorage as InMemoryVariableStorage;
 
         dialogueSteps = new List<DialogueStep>
         {
-            new DialogueStep("ManagerDialogue", "$finishedManagerDialogue"),
-            new DialogueStep("ManagerDialogueAfterAnya", "$finishedAfterAnya", () =>
+            new("ManagerDialogue", "$finishedManagerDialogue"),
+            new("ManagerDialogueAfterAnya", "$finishedAfterAnya", () =>
             {
                 inventory.AddItem(new Item { itemData = pillsBlueprint, amount = 1 });
             }),
-            new DialogueStep("ManagerDialogueForPills", "$finishedPillDialogue", () =>
+            new("ManagerDialogueForPills", "$finishedPillDialogue", () =>
             {
                 plantPanel.SetActive(true);
                 inventoryManager.AddItem(new Item { itemData = plantItemSO, amount = 3 });
             }),
-            new DialogueStep("CraftingPills", "$finishedCraftingDialogue", () =>
+            new("CraftingPills", "$finishedCraftingDialogue", () =>
             {
                 UICraftingWindow.SetActive(true);
                 arrow1.SetActive(true);
                 arrow2.SetActive(true);
             }),
-            new DialogueStep("AdministratingPills", "$readyToAdministerPills"),
-            new DialogueStep("PatientLog", "$finishedPatientLogDialogue", () =>
+            new("AdministratingPills", "$readyToAdministerPills"),
+            new("PatientLog", "$finishedPatientLogDialogue", () =>
             {
                 patientLog.SetActive(true);
                 foreach (var word in unlockableWords)
-                {
                     word.SetActive(true);
-                }
             }),
         };
-        
     }
 
     private void Start()
@@ -106,43 +104,34 @@ public class Tutorial : MonoBehaviour
                 return;
             }
         }
+
         currentStep = null;
         dialogueRunner.StartDialogue("RepeatOrFallbackDialogue");
     }
 
     public void StartCraftingDialogue()
     {
-        currentStep = dialogueSteps.Find(step => step.NodeName == "CraftingPills");
-        if (currentStep != null)
-        {
-            dialogueRunner.StartDialogue(currentStep.NodeName);
-        }
+        StartDialogueByNodeName("CraftingPills");
     }
 
     private void OnDialogueComplete()
     {
         if (dialogueRunner.CurrentNodeName == "AnyaIntro" &&
             yarnVariables != null &&
-            yarnVariables.TryGetValue("$popUpScreenTut", out bool hasFinished) &&
-            hasFinished)
+            yarnVariables.TryGetValue("$popUpScreenTut", out bool hasFinished) && hasFinished)
         {
             panelUI.SetActive(true);
             hospitalButton.SetActive(true);
         }
-        
+
         currentStep?.PostDialogueAction?.Invoke();
         currentStep = null;
     }
 
-    public void HideButtons()
-    {
-        plantPanel.SetActive(false);
-    }
+    public void HideButtons() => plantPanel.SetActive(false);
 
-    public void GoToEntrance()
-    {
+    public void GoToEntrance() =>
         playerAgent.SetDestination(hospitalEntrance.transform.position);
-    }
 
     public void DisableButton()
     {
@@ -150,24 +139,23 @@ public class Tutorial : MonoBehaviour
         panelUI.SetActive(false);
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() =>
         UI_Crafting.OnItemCrafted += OnPlantBlueprintCrafted;
-    }
 
-    private void OnDisable()
-    {
+    private void OnDisable() =>
         UI_Crafting.OnItemCrafted -= OnPlantBlueprintCrafted;
-    }
 
     private void OnPlantBlueprintCrafted(ItemSO obj)
     {
-        if (exclamationMark != null) exclamationMark.SetActive(true);
+        if (exclamationMark != null)
+            exclamationMark.SetActive(true);
+
         arrow1.SetActive(false);
         arrow2.SetActive(false);
-        
+
         StartDialogueByNodeName("AdministratingPills");
     }
+
     private void StartDialogueByNodeName(string nodeName)
     {
         currentStep = dialogueSteps.Find(step => step.NodeName == nodeName);

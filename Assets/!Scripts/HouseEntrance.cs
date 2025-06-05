@@ -4,97 +4,65 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class HouseEntrance : MonoBehaviour
+public sealed class HouseEntrance : MonoBehaviour
 {
     private NavMeshAgent agent;
-    public Camera externalCamera;
-    public Camera interiorCamera;
-    public Camera storageCamera;
-    public Camera patientCamera;
-    public GameObject enterButton;
-    public GameObject interiorSpawnPoint;
-    public GameObject houseEntrance;
-    public GameObject exitButton;
-    public GameObject patientButton;
-    public GameObject storageButton;
-    public GameObject storageSpawnPoint;
-    public GameObject patientSpawnPoint;
-    public Canvas exteriorWorldSpaceCanvas;
-    public Canvas interiorWorldSpaceCanvas;
-    public SimpleMovement simpleMovement;
 
-    public GameObject canvasForInterior;
+    [SerializeField] private Camera externalCamera;
+    [SerializeField] private Camera interiorCamera;
+    [SerializeField] private Camera storageCamera;
+    [SerializeField] private Camera patientCamera;
+
+    [SerializeField] private GameObject enterButton;
+    [SerializeField] private GameObject interiorSpawnPoint;
+    [SerializeField] private GameObject houseEntrance;
+    [SerializeField] private GameObject exitButton;
+    [SerializeField] private GameObject patientButton;
+    [SerializeField] private GameObject storageButton;
+    [SerializeField] private GameObject storageSpawnPoint;
+    [SerializeField] private GameObject patientSpawnPoint;
+
+    [SerializeField] private Canvas exteriorWorldSpaceCanvas;
+    [SerializeField] private Canvas interiorWorldSpaceCanvas;
+
+    [SerializeField] private SimpleMovement simpleMovement;
+    [SerializeField] private GameObject canvasForInterior;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        canvasForInterior.gameObject.SetActive(false);
+        canvasForInterior.SetActive(false);
     }
 
-    public void TeleportToInterior()
+    private void Teleport(Vector3 destination, Camera activeCamera)
     {
-        agent.Warp(interiorSpawnPoint.transform.position);
-        interiorCamera.gameObject.SetActive(true);
-        externalCamera.gameObject.SetActive(false);
-        storageCamera.gameObject.SetActive(false);
-        patientCamera.gameObject.SetActive(false);
-        
-        exteriorWorldSpaceCanvas.worldCamera = interiorCamera;
-        interiorWorldSpaceCanvas.worldCamera = interiorCamera;
-        simpleMovement.SetCamera(interiorCamera);
-        HideInteriorUI();
-    }
+        agent.Warp(destination);
 
-    public void TeleportToExterior()
-    {
-        agent.Warp(houseEntrance.transform.position);
-        interiorCamera.gameObject.SetActive(false);
-        externalCamera.gameObject.SetActive(true);
-        storageCamera.gameObject.SetActive(false);
-        patientCamera.gameObject.SetActive(false);
-        
-        interiorWorldSpaceCanvas.worldCamera = externalCamera;
-        exteriorWorldSpaceCanvas.worldCamera = externalCamera;
-        simpleMovement.SetCamera(externalCamera);
-        HideInteriorUI();
-    }
-    public void TeleportToStorage()
-    {
-        agent.Warp(storageSpawnPoint.transform.position);
-        storageCamera.gameObject.SetActive(true);
-        externalCamera.gameObject.SetActive(false);
-        interiorCamera.gameObject.SetActive(false);
-        patientCamera.gameObject.SetActive(false);
-        
-        exteriorWorldSpaceCanvas.worldCamera = storageCamera;
-        interiorWorldSpaceCanvas.worldCamera = storageCamera;
-        simpleMovement.SetCamera(storageCamera);
-        HideInteriorUI();
-    }
-    public void TeleportToPatient()
-    {
-        agent.Warp(patientSpawnPoint.transform.position);
-        patientCamera.gameObject.SetActive(true);
         externalCamera.gameObject.SetActive(false);
         interiorCamera.gameObject.SetActive(false);
         storageCamera.gameObject.SetActive(false);
-        
-        exteriorWorldSpaceCanvas.worldCamera = patientCamera;
-        interiorWorldSpaceCanvas.worldCamera = patientCamera;
-        simpleMovement.SetCamera(patientCamera);
+        patientCamera.gameObject.SetActive(false);
+        activeCamera.gameObject.SetActive(true);
+
+        exteriorWorldSpaceCanvas.worldCamera = activeCamera;
+        interiorWorldSpaceCanvas.worldCamera = activeCamera;
+        simpleMovement.SetCamera(activeCamera);
+
         HideInteriorUI();
     }
 
-    public void ShowInteriorUI()
-    {
-        canvasForInterior.gameObject.SetActive(true);
-    }
+    public void TeleportToInterior() => Teleport(interiorSpawnPoint.transform.position, interiorCamera);
+    public void TeleportToExterior() => Teleport(houseEntrance.transform.position, externalCamera);
+    public void TeleportToStorage() => Teleport(storageSpawnPoint.transform.position, storageCamera);
+    public void TeleportToPatient() => Teleport(patientSpawnPoint.transform.position, patientCamera);
+
+    public void ShowInteriorUI() => canvasForInterior.SetActive(true);
+
     public void HideInteriorUI()
     {
-        canvasForInterior.gameObject.SetActive(false);
+        canvasForInterior.SetActive(false);
         enterButton.SetActive(false);
         exitButton.SetActive(false);
         patientButton.SetActive(false);
@@ -103,40 +71,17 @@ public class HouseEntrance : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == houseEntrance)
-        {
-            enterButton.SetActive(true);
-        }
-        else if (other.gameObject == interiorSpawnPoint)
-        {
-            exitButton.SetActive(true);
-        }
-        else if (other.gameObject == storageSpawnPoint)
-        {
-            storageButton.SetActive(true);
-        }
-        else if (other.gameObject == patientSpawnPoint)
-        {
-            patientButton.SetActive(true);
-        }
+        if (other.gameObject == houseEntrance) enterButton.SetActive(true);
+        else if (other.gameObject == interiorSpawnPoint) exitButton.SetActive(true);
+        else if (other.gameObject == storageSpawnPoint) storageButton.SetActive(true);
+        else if (other.gameObject == patientSpawnPoint) patientButton.SetActive(true);
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == houseEntrance)
-        {
-            enterButton.SetActive(false);
-        }
-        else if (other.gameObject == interiorSpawnPoint)
-        {
-            exitButton.SetActive(false);
-        }
-        else if (other.gameObject == storageSpawnPoint)
-        {
-            storageButton.SetActive(false);
-        }
-        else if (other.gameObject == patientSpawnPoint)
-        {
-            patientButton.SetActive(false);
-        }
+        if (other.gameObject == houseEntrance) enterButton.SetActive(false);
+        else if (other.gameObject == interiorSpawnPoint) exitButton.SetActive(false);
+        else if (other.gameObject == storageSpawnPoint) storageButton.SetActive(false);
+        else if (other.gameObject == patientSpawnPoint) patientButton.SetActive(false);
     }
 }

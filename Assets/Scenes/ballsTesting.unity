@@ -29992,6 +29992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAgent: {fileID: 919132147545465722}
+  dialogueRunner: {fileID: 3579681406051411869}
   panelUI: {fileID: 1323731925}
   hospitalEntrance: {fileID: 278682955}
   hospitalButton: {fileID: 1763204358}
@@ -30010,7 +30011,6 @@ MonoBehaviour:
   plantItemSO: {fileID: 11400000, guid: dab3a62bf1ff3834c9aece111d623e70, type: 2}
   pillsBlueprint: {fileID: 11400000, guid: e480d9797b8bbd44abe78d61c382ad20, type: 2}
   uiCrafting: {fileID: 951666899}
-  dialogueRunner: {fileID: 3579681406051411869}
 --- !u!114 &919132147545465729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30659,8 +30659,8 @@ MonoBehaviour:
     _version: 3.31
     _category: 
     _comments: 
-    _translation: {x: -3039, y: -893}
-    _zoomFactor: 1
+    _translation: {x: -1076, y: -453}
+    _zoomFactor: 0.5001807
   _firstActivation: 0
   _enableAction: 0
   _disableAction: 0

@@ -1,41 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
-    public NPC_Drop_Manager dropManager;
+    [SerializeField] private NPC_Drop_Manager dropManager;
+    [SerializeField] private string acceptedItemID;
 
-    public string acceptedItemID;
     public enum SlotType
     {
         PatientLog,
         TreatCanvas
     }
-    public SlotType slotType;
+
+    [SerializeField] private SlotType slotType;
+
     public void OnDrop(PointerEventData eventData)
     {
         var draggableItem = eventData.pointerDrag?.GetComponent<DraggableItem>();
-        if (draggableItem != null)
-        {
-            if (draggableItem.itemID == acceptedItemID)
-            {
-                draggableItem.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
+        if (draggableItem == null) return;
 
-                if (slotType == SlotType.PatientLog)
-                {
-                    dropManager.RegisterWords();
-                }
-                else if (slotType == SlotType.TreatCanvas)
-                {
-                    dropManager.RegisterPills();
-                }
-            }
-            else
-            {
-                draggableItem.ResetPosition();
-            }
+        if (draggableItem.itemID == acceptedItemID)
+        {
+            draggableItem.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
+            HandleCorrectDrop();
+        }
+        else
+        {
+            draggableItem.ResetPosition();
+        }
+    }
+
+    private void HandleCorrectDrop()
+    {
+        switch (slotType)
+        {
+            case SlotType.PatientLog:
+                dropManager.RegisterWords();
+                break;
+            case SlotType.TreatCanvas:
+                dropManager.RegisterPills();
+                break;
         }
     }
 }
