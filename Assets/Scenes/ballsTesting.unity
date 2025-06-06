@@ -1109,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1117,7 +1117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1129,7 +1129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1139,10 +1139,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Anya Animation
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6c695af91447fff42aab1ea5e3320a24, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12202,6 +12210,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858999257}
   m_CullTransparentMesh: 1
+--- !u!95 &859108820 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 965c5e7efbac0de4cab6d6790d4c9b12, type: 3}
+  m_PrefabInstance: {fileID: 26885888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &864474702
 GameObject:
   m_ObjectHideFlags: 0
@@ -30737,6 +30750,7 @@ GameObject:
   - component: {fileID: 5866666021210002807}
   - component: {fileID: 5866666021210002808}
   - component: {fileID: 5866666021210002809}
+  - component: {fileID: 5866666021210002810}
   m_Layer: 0
   m_Name: Anya
   m_TagString: Untagged
@@ -31343,8 +31357,8 @@ MonoBehaviour:
     _version: 3.31
     _category: 
     _comments: 
-    _translation: {x: -1076, y: -453}
-    _zoomFactor: 0.5001807
+    _translation: {x: -2245, y: -831}
+    _zoomFactor: 0.96030277
   _firstActivation: 0
   _enableAction: 0
   _disableAction: 0
@@ -31481,6 +31495,19 @@ MonoBehaviour:
   shaderPropertyName: _UVOffset
   eyes: 0
   mouths: 0
+--- !u!114 &5866666021210002810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148783257005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b025b5d20dd2c46ae9de5096d19f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 859108820}
 --- !u!224 &7084386684825389460
 RectTransform:
   m_ObjectHideFlags: 0
