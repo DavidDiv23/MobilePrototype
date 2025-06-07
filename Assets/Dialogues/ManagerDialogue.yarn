@@ -2,23 +2,27 @@
 tags:
 ---
 
-Manager: Greetings, fellow feline! You must be the new organic intern at our Care Free Healthcare facility! My title is AI-ko 3500, Aiko for short and my primary purpose is to manage this facility to my creator’s standards. How can I register your name in my internal system?
+Aiko: Greetings, fellow feline! You must be the new organic intern at our Care Free Healthcare facility! 
 
--> Kino: Ehm, the name is Kino-
+Aiko: My title is AI-ko 3500, Aiko for short and my primary purpose is to manage this facility to my creator’s standards. 
 
-Manager: Great, KEE-no, it is with great pleasure to finally meet you! I will not keep you waiting and commence your training right away.
+Aiko: How can I register your name in my internal system?
 
-Manager: As you might have observed, the facility currently houses… 1 patient, and I can’t seem to gain their trust in order to calculate the correct diagnosis.
+Kino: Ehm, the name is Kino-
 
-Manager: Therefore, your task is to establish trust by talking to the patients and utilize the correct treatment through the technology I can offer.
+Aiko: Great, KEE-no, it is with great pleasure to finally meet you! I will not keep you waiting and commence your training right away.
 
--> Kino: Wait, so I have to talk to people?!
+Aiko: As you might have observed, the facility currently houses… 1 patient, and I can’t seem to gain their trust in order to calculate the correct diagnosis.
 
-Manager: Exactly! Any inconvenience this causes for you, please keep it to yourself as I do not have a drive containing complaints.
+Aiko: Therefore, your task is to establish trust by talking to the patients and utilize the correct treatment through the technology I can offer.
 
-Manager: Your first patient will be… A-NYAW, she rushed off, before I could have come up with a solution, but she might be still in the yard.
+Kino: Wait, so I have to talk to people?!
 
-Manager: You have to engage with her now, or your internship will be terminated with immediate effect. On your way now!
+Aiko: Exactly! Any inconvenience this causes for you, please keep it to yourself as I do not have a drive containing complaints.
+
+Aiko: Your first patient will be… A-NYAW, she rushed off, before I could have come up with a solution, but she might be still in the yard.
+
+Aiko: You have to engage with her now, or your internship will be terminated with immediate effect. On your way now!
 
 <<set $finishedManagerDialogue = true>>
 <<set $popUpScreenTut = true>>
