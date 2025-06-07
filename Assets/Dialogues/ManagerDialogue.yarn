@@ -69,7 +69,7 @@ Aiko: Great! Now you can give the pills to Anya.
 title: PatientLog
 tags:
 ---
-Aiko: Let me show you how to open the patient log.
+Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!Let me show you how to open the patient log.
 <<set $finishedPatientLogDialogue = true>>
 ===
 
