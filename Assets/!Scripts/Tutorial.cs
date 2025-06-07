@@ -55,12 +55,9 @@ public class Tutorial : MonoBehaviour
         dialogueSteps = new List<DialogueStep>
         {
             new("ManagerDialogue", "$finishedManagerDialogue"),
-            new("ManagerDialogueAfterAnya", "$finishedAfterAnya", () =>
-            {
-                inventory.AddItem(new Item { itemData = pillsBlueprint, amount = 1 });
-            }),
             new("ManagerDialogueForPills", "$finishedPillDialogue", () =>
             {
+                inventory.AddItem(new Item { itemData = pillsBlueprint, amount = 1 });
                 plantPanel.SetActive(true);
                 inventoryManager.AddItem(new Item { itemData = plantItemSO, amount = 3 });
             }),
