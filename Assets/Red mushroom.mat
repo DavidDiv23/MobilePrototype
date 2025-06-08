@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BushGreen
+  m_Name: Red mushroom
   m_Shader: {fileID: 4800000, guid: 313fcf3aebc04cf4ab4f8c5f2850be7f, type: 3}
   m_Parent: {fileID: 2100000, guid: af860aff0f9305b449a06304f209c7f7, type: 2}
   m_ModifiedSerializedProperties: 16
@@ -25,14 +25,14 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _OutlineWidth: 0.472
-    - _RimStep: 0.773
+    - _OutlineWidth: 0.659
+    - _RimStep: 0.335
     - _RimStepSmooth: 0.019
-    - _ShadowStep: 0.235
+    - _ShadowStep: 0.242
     - _ShadowStepSmooth: 0.024
-    - _SpecularStep: 0
+    - _SpecularStep: 0.146
     - _SpecularStepSmooth: 0.015
     m_Colors:
-    - _BaseColor: {r: 0.46042812, g: 0.7207546, b: 0.2651832, a: 1}
+    - _BaseColor: {r: 0.5647059, g: 0.39715928, b: 0.3764706, a: 1}
     - _RimColor: {r: 0.5169811, g: 0.3757887, b: 0.36188677, a: 1}
   m_BuildTextureStacks: []
