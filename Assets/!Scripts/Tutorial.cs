@@ -10,6 +10,7 @@ public class Tutorial : MonoBehaviour
     [Header("Core Systems")]
     [SerializeField] private NavMeshAgent playerAgent;
     [SerializeField] private DialogueRunner dialogueRunner;
+    [SerializeField] private FaceAnya faceAnya;
 
     [Header("UI & Interaction")]
     [SerializeField] private GameObject panelUI;
@@ -33,7 +34,8 @@ public class Tutorial : MonoBehaviour
     private InMemoryVariableStorage yarnVariables;
     private DialogueStep currentStep;
     private List<DialogueStep> dialogueSteps;
-
+    
+    
     private class DialogueStep
     {
         public string NodeName;
@@ -85,6 +87,7 @@ public class Tutorial : MonoBehaviour
         arrow2.SetActive(false);
 
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
+        
     }
 
     public void StartingDialogue()
@@ -161,4 +164,5 @@ public class Tutorial : MonoBehaviour
             dialogueRunner.StartDialogue(currentStep.NodeName);
         }
     }
+    
 }

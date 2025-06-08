@@ -4,6 +4,7 @@
 Kino: Hi erm… are you ANYAW- Anya? 
 
 Anya: Yeah, and who might you be? Are you also going to make a fool of me, like that rude robot?!
+<<set_face "2" "4">>
 
 ...
 
