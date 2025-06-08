@@ -27102,7 +27102,7 @@ Transform:
   m_GameObject: {fileID: 1722685194}
   serializedVersion: 2
   m_LocalRotation: {x: 0.21977577, y: 0.6794399, z: -0.22207174, w: 0.6638857}
-  m_LocalPosition: {x: -205.05257, y: 47.592705, z: 62.057938}
+  m_LocalPosition: {x: -205.46957, y: 47.663704, z: 43.154938}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35647,7 +35647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147545465716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e29bc87b59deee343bc4688decdc67ab, type: 3}
   m_Name: 
@@ -36327,6 +36327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matEyes: {fileID: 2100000, guid: 7575ad184e8ad284fb113e6eaa5d64c2, type: 2}
   matMouth: {fileID: 2100000, guid: 535fc3787714d4d4f8296cb91263867d, type: 2}
+  dialogueRunner: {fileID: 3579681406051411869}
   shaderPropertyName: _UVOffset
   eyes: 0
   mouths: 0
