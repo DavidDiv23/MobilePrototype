@@ -23,6 +23,9 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private GameObject arrow1;
     [SerializeField] private GameObject arrow2;
     [SerializeField] private GameObject patientLog;
+    [SerializeField] private Button outsideExclamationButton;
+    [SerializeField] private Button treatButton;
+    [SerializeField] private GameObject treatExclamation;
 
     [Header("Inventory & Items")]
     [SerializeField] private Inventory inventory;
@@ -53,10 +56,12 @@ public class Tutorial : MonoBehaviour
     private void Awake()
     {
         yarnVariables = dialogueRunner.VariableStorage as InMemoryVariableStorage;
-
         dialogueSteps = new List<DialogueStep>
         {
-            new("ManagerDialogue", "$finishedManagerDialogue"),
+            new("ManagerDialogue", "$finishedManagerDialogue", () =>
+            {
+                outsideExclamationButton.interactable = true;
+            }),
             new("ManagerDialogueForPills", "$finishedPillDialogue", () =>
             {
                 inventory.AddItem(new Item { itemData = pillsBlueprint, amount = 1 });
@@ -66,6 +71,8 @@ public class Tutorial : MonoBehaviour
             new("CraftingPills", "$finishedCraftingDialogue", () =>
             {
                 UICraftingWindow.SetActive(true);
+                treatButton.interactable = true;
+                treatExclamation.SetActive(true);
                 arrow1.SetActive(true);
                 arrow2.SetActive(true);
             }),
@@ -87,7 +94,9 @@ public class Tutorial : MonoBehaviour
         arrow2.SetActive(false);
 
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueComplete);
-        
+        outsideExclamationButton.interactable = false;
+        treatButton.interactable = false;
+        treatExclamation.SetActive(false);
     }
 
     public void StartingDialogue()
