@@ -92,6 +92,10 @@ public class Tutorial : MonoBehaviour
                 //open the blueprint selection UI
                 blueprintSelectionPanel.SetActive(true);
                 //test
+            }),
+            new ("GiftingBlueprint", "$hasGivenBlueprint", () =>
+            {
+                
             })
         };
     }
@@ -133,6 +137,10 @@ public class Tutorial : MonoBehaviour
     {
         StartDialogueByNodeName("CraftingPills");
     }
+    public void StartDialogueAfterBlueprintSelection()
+    {
+        StartDialogueByNodeName("BlueprintChosen");
+    }
 
     private void OnDialogueComplete()
     {
@@ -158,13 +166,16 @@ public class Tutorial : MonoBehaviour
         hospitalButton.SetActive(false);
         panelUI.SetActive(false);
     }
+    
 
     private void OnEnable() =>
         UI_Crafting.OnItemCrafted += OnPlantBlueprintCrafted;
 
     private void OnDisable() =>
         UI_Crafting.OnItemCrafted -= OnPlantBlueprintCrafted;
-
+    
+    
+    // This method is called when the player crafts the plant blueprint (change it)
     private void OnPlantBlueprintCrafted(ItemSO obj)
     {
         if (exclamationMark != null)

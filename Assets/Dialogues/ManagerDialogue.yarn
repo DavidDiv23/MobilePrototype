@@ -91,3 +91,11 @@ tags:
 Ai-ko: Great! Now you can choose which blueprint to craft. Pick the one you think is best for Anya.
 <<set $readyToChooseBlueprint = true>>
 ===
+
+title: BlueprintChosen
+tags:
+---
+Ai-ko: Great! Now you can collect the resources you need to craft the blueprint.
+<<set $readyToCollectResources = true>>
+===
+

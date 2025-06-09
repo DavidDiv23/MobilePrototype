@@ -70,6 +70,32 @@ Kino: Thank you for telling me, maybe the manager knows a way to make it easier 
 <<set $completedPillsTask = true>>
 ===
 
+title: GiftingBlueprint
+tags:
+---
+Kino: Hey! I know you don’t like being reminded to take pills, so I’ve got you this! It’s an automatic pill dispenser that will give you pills whenever you need them. Now you don’t have to worry about anything, I’ll only need to refill it once in a while.
+SURPRISED/RELIEVED Anya: Oh… really? That sounds nice… You're way better than that robot. 
+SAD Anya: It’s always on about efficiency and statistics, I never know what he’s talking about…
+
+Kino: I’m sorry about that, he can be a bit stiff sometimes.. But he was the one who helped me come up with this gift for you! So he’s not entirely bad…
+FRUSTRATED Anya: If you say so… but I still don’t like him! He doesn’t care about anything around him! Have you seen his room? 
+Anya: A complete mess! He even tried to throw away a painting from my room… He thought it was trash until I told him it’s my most prized possession…
+
+Kino: What?! He really lacks tact sometimes… 
+Kino: This painting… Did u paint it yourself?
+UPSET Anya: Yes… I like painting in my free time but I haven’t been able to pick it up recently… I can’t find any inspiration…
+Kino 1: Oh, I’m sorry to hear that…
+    Kino: How about you try to teach me some? Maybe we could set it up in the garden?
+    HAPPY Anya: maybe… Would you really want to?
+Kino 2: Why don’t you just pick up a brush and paint?
+    Kino: 
+FRUSTRATED Anya: It’s not as easy… forget it.
+
+<<set $hasGivenBlueprint = true>>
+===
+
+
+
 
 
 
