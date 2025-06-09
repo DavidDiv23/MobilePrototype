@@ -14,11 +14,6 @@ public class UI_Crafting : MonoBehaviour
     [SerializeField] private Inventory inventory; 
     [SerializeField] private Button craftButton;
 
-    [Header("Button Sprites")]
-    [SerializeField] private Sprite defaultButtonSprite;
-    [SerializeField] private Sprite craftableButtonSprite;
-    [SerializeField] private Image craftButtonImage; // Reference to the Image component on the button
-
     [Header("Panel 1: Blueprint Inventory")]
     public Transform InventoryWindow;
     public GameObject blueprintSlotPrefab;
@@ -33,7 +28,6 @@ public class UI_Crafting : MonoBehaviour
     public Image ResultItemSprite;
     public Transform recipeWindow;
     public GameObject recipeItemTemplate;
-
 
     [Header("Grid Settings - Blueprint Inventory")]
     public float leftPadding = 20f;
@@ -264,14 +258,6 @@ public class UI_Crafting : MonoBehaviour
             bool hasBlueprints = blueprints.Count > 0;
             DescriptionWindow?.SetActive(hasBlueprints);
             CraftableWindow?.SetActive(hasBlueprints);
-         
-
-            // Set default button sprite when no blueprint is selected
-            if (!hasBlueprints || selectedBlueprintItem == null)
-            {
-                craftButtonImage.sprite = defaultButtonSprite;
-                craftButton.interactable = false;
-            }
         }
         catch (Exception ex)
         {
@@ -384,9 +370,7 @@ public class UI_Crafting : MonoBehaviour
         }
 
         // Update craft button state after creating all requirements
-        bool canCraft = CanCraft();
-        craftButton.interactable = canCraft;
-        craftButtonImage.sprite = canCraft ? craftableButtonSprite : defaultButtonSprite;
+        craftButton.interactable = CanCraft();
     }
 
     // Moved outside ShowBlueprintDetails as class-level methods
@@ -416,7 +400,9 @@ public class UI_Crafting : MonoBehaviour
             {
                 itemData = req.item,
                 amount = req.amount
+                
             });
+            OnItemCrafted?.Invoke(currentRecipe.resultItem);
         }
 
         // Add crafted item
@@ -426,23 +412,12 @@ public class UI_Crafting : MonoBehaviour
             amount = currentRecipe.resultAmount
         });
 
-        // Invoke crafted event
-        OnItemCrafted?.Invoke(currentRecipe.resultItem);
-
-        // Refresh the UI - this is the key change
+        // Refresh UI with the stored blueprint
         if (selectedBlueprintItem != null)
         {
-            // This will force a refresh of both inventory and recipe display
             ShowBlueprintDetails(selectedBlueprintItem);
         }
 
-        // Also refresh the blueprint inventory in case quantities changed
-        RefreshBlueprintInventory(this, EventArgs.Empty);
-
-
-        // Update button sprite immediately after crafting
-        bool canCraft = CanCraft(); // Check if we can craft again
-        craftButtonImage.sprite = canCraft ? craftableButtonSprite : defaultButtonSprite;
-        craftButton.interactable = canCraft;
+        UpdateCraftingState();
     }
 }

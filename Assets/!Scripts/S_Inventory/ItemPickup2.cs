@@ -1,6 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class ItemPickup2 : MonoBehaviour
 {
@@ -8,82 +9,62 @@ public class ItemPickup2 : MonoBehaviour
     public ItemSO itemData;
     public int amount = 1;
     public float pickupDistance = 5f;
-    public Vector3 canvasOffset = new Vector3(0, 2f, 0);
-    public float respawnTime = 30f; // New: Time in seconds before item respawns
+    public Vector3 buttonOffset = new Vector3(0, 2f, 0); // Offset above item
 
     [Header("UI Settings")]
-    public Canvas pickupCanvas; // Assign child canvas in Inspector
-    private Button pickupButton;
-    private SphereCollider proximityCollider;
-
-    private Vector3 originalPosition;
-    private Quaternion originalRotation;
-    private bool isRespawning = false;
-    private float respawnTimer = 0f;
+    public GameObject pickupButtonPrefab; // Assign a UI Button prefab
+    private GameObject currentButton;
+    private Transform playerTransform;
 
     private void Start()
     {
-        // Save original transform
-        originalPosition = transform.position;
-        originalRotation = transform.rotation;
-
-        // Set up proximity collider
-        proximityCollider = gameObject.AddComponent<SphereCollider>();
-        proximityCollider.radius = pickupDistance;
-        proximityCollider.isTrigger = true;
-
-        // Canvas setup
-        if (pickupCanvas != null)
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (playerTransform == null)
         {
-            pickupCanvas.transform.localPosition = canvasOffset;
-            pickupCanvas.gameObject.SetActive(false);
-
-            pickupButton = pickupCanvas.GetComponentInChildren<Button>();
-            if (pickupButton != null)
-            {
-                pickupButton.onClick.AddListener(PickUp);
-            }
-            else
-            {
-                Debug.LogError("No button found in pickup canvas!", this);
-            }
-        }
-        else
-        {
-            Debug.LogError("Pickup canvas not assigned!", this);
+            Debug.LogError("Player not found! Tag your player as 'Player'");
         }
 
         if (itemData == null)
         {
-            Debug.LogError("No ItemSO assigned to this pickup!", this);
+            Debug.LogError("No ItemSO assigned to this pickup!", gameObject);
         }
     }
 
     private void Update()
     {
-        if (isRespawning)
+        if (playerTransform == null) return;
+
+        float distance = Vector3.Distance(transform.position, playerTransform.position);
+        bool inRange = distance <= pickupDistance;
+
+        HandleButtonVisibility(inRange);
+    }
+
+    private void HandleButtonVisibility(bool inRange)
+    {
+        if (inRange)
         {
-            respawnTimer -= Time.deltaTime;
-            if (respawnTimer <= 0f)
+            if (currentButton == null)
             {
-                RespawnItem();
+                // Create button if it doesn't exist
+                currentButton = Instantiate(pickupButtonPrefab, FindObjectOfType<Canvas>().transform);
+                currentButton.GetComponent<Button>().onClick.AddListener(PickUp);
+            }
+
+            // Position button above item
+            if (currentButton != null)
+            {
+                currentButton.transform.position = Camera.main.WorldToScreenPoint(transform.position + buttonOffset);
             }
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !isRespawning)
+        else
         {
-            pickupCanvas.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            pickupCanvas.gameObject.SetActive(false);
+            // Remove button when out of range
+            if (currentButton != null)
+            {
+                Destroy(currentButton);
+                currentButton = null;
+            }
         }
     }
 
@@ -94,7 +75,13 @@ public class ItemPickup2 : MonoBehaviour
         {
             Item item = new Item { itemData = itemData, amount = amount };
             inventoryManager.AddItem(item);
-            StartRespawnTimer();
+
+            // Clean up before destroying
+            if (currentButton != null)
+            {
+                Destroy(currentButton);
+            }
+            Destroy(gameObject);
         }
         else
         {
@@ -102,58 +89,11 @@ public class ItemPickup2 : MonoBehaviour
         }
     }
 
-    private void StartRespawnTimer()
-    {
-        // Disable all visible and interactive components
-        SetItemActive(false);
-
-        isRespawning = true;
-        respawnTimer = respawnTime;
-    }
-
-    private void RespawnItem()
-    {
-        // Reset position and rotation
-        transform.position = originalPosition;
-        transform.rotation = originalRotation;
-
-        // Enable all components
-        SetItemActive(true);
-
-        isRespawning = false;
-    }
-
-    private void SetItemActive(bool active)
-    {
-        // Disable/enable renderers and colliders
-        foreach (var renderer in GetComponentsInChildren<Renderer>())
-        {
-            renderer.enabled = active;
-        }
-
-        foreach (var collider in GetComponentsInChildren<Collider>())
-        {
-            collider.enabled = active;
-        }
-
-        if (pickupCanvas != null)
-        {
-            pickupCanvas.gameObject.SetActive(false); // Always keep canvas hidden initially
-        }
-    }
-
     private void OnDestroy()
     {
-        if (pickupButton != null)
+        if (currentButton != null)
         {
-            pickupButton.onClick.RemoveListener(PickUp);
+            Destroy(currentButton);
         }
-    }
-
-    // Visualize pickup radius in editor
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, pickupDistance);
     }
 }
