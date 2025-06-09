@@ -2,27 +2,27 @@
 tags:
 ---
 
-Aiko: Greetings, fellow feline! You must be the new organic intern at our Care Free Healthcare facility! 
+Ai-ko: Greetings, fellow feline! You must be the new organic intern at our Care Free Healthcare facility! 
 
-Aiko: My title is AI-ko 3500, Aiko for short and my primary purpose is to manage this facility to my creator’s standards. 
+Ai-ko: My title is AI-ko 3500, Ai-ko for short and my primary purpose is to manage this facility to my creator’s standards. 
 
-Aiko: How can I register your name in my internal system?
+Ai-ko: How can I register your name in my internal system?
 
 Kino: Ehm, the name is Kino-
 
-Aiko: Great, KEE-no, it is with great pleasure to finally meet you! I will not keep you waiting and commence your training right away.
+Ai-ko: Great, KEE-no, it is with great pleasure to finally meet you! I will not keep you waiting and commence your training right away.
 
-Aiko: As you might have observed, the facility currently houses… 1 patient, and I can’t seem to gain their trust in order to calculate the correct diagnosis.
+Ai-ko: As you might have observed, the facility currently houses… 1 patient, and I can’t seem to gain their trust in order to calculate the correct diagnosis.
 
-Aiko: Therefore, your task is to establish trust by talking to the patients and utilize the correct treatment through the technology I can offer.
+Ai-ko: Therefore, your task is to establish trust by talking to the patients and utilize the correct treatment through the technology I can offer.
 
 Kino: Wait, so I have to talk to people?!
 
-Aiko: Exactly! Any inconvenience this causes for you, please keep it to yourself as I do not have a drive containing complaints.
+Ai-ko: Exactly! Any inconvenience this causes for you, please keep it to yourself as I do not have a drive containing complaints.
 
-Aiko: Your first patient will be… A-NYAW, she rushed off, before I could have come up with a solution, but she might be still in the yard.
+Ai-ko: Your first patient will be… A-NYAW, she rushed off, before I could have come up with a solution, but she might be still in the yard.
 
-Aiko: You have to engage with her now, or your internship will be terminated with immediate effect. On your way now!
+Ai-ko: You have to engage with her now, or your internship will be terminated with immediate effect. On your way now!
 
 <<set $finishedManagerDialogue = true>>
 <<set $popUpScreenTut = true>>
@@ -31,7 +31,7 @@ Aiko: You have to engage with her now, or your internship will be terminated wit
 title: ManagerDialogueAfterAnya
 tags:
 ---
-Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!
+Ai-ko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!
 <<set $finishedAfterAnya = true>>
 <<set $readyToOpenDataReport = true>>
 ===
@@ -39,13 +39,14 @@ Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Ple
 title: ManagerDialogueForPills
 tags:
 ---
-Kino: Hi, Anya told me she needs pills.
+Kino: Anya told me about her high blood pressure; she has to take medication for it correct?
 
-Aiko: Oh yeah she does, I forgot to tell you that. One of your tasks would be to remind her to take her pills.
+Ai-ko: Oh yeah she does, I was JUST going to tell you about it.
+Ai-ko: You need to give medication to your patients, of course, but first you need to restock them. Let me show you how to gather them.
 
-Aiko: Let me show you how.
+Ai-ko: Let me show you how.
 
-Aiko: You click on the button to plant and collect the plants.
+Ai-ko: You click on the button to plant and collect the plants.
 
 <<set $finishedPillDialogue = true>>
 <<set $readyToOpenPlantPanel = true>>
@@ -54,37 +55,38 @@ Aiko: You click on the button to plant and collect the plants.
 title: CraftingPills
 tags:
 ---
-Aiko: Great! Now let me show you how to craft the pills.
-Aiko: You click on the button to open the crafting panel.
+Ai-ko: Great! Now let me show you how to craft the pills.
+Ai-ko: You click on the button to open the crafting panel.
 <<set $finishedCraftingDialogue = true>>
 ===
 
 title: AdministratingPills
 tags:
 ---
-Aiko: Great! Now you can give the pills to Anya.
+Ai-ko: Great! Now you can give the pills to Anya.
 <<set $readyToAdministerPills = true>>
 ===
 
 title: PatientLog
 tags:
 ---
-Aiko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!Let me show you how to open the patient log.
+Ai-ko: Good job, KEE-no! According to calculations, you’ve spoken to ANYAW. Please submit your patient data report so I can assess her conditions!
+Aik-ko: Let me show you how to open the patient log.
 <<set $finishedPatientLogDialogue = true>>
 ===
 
 title: FinishingPatientLog
 tags:
 ---
-Aiko: Great! Not bad, not bad. Alright, let's see what you have learned about Anya.
-Aiko: Hmm, my programming suggests the following treatment:
-Aiko: You need to choose which blueprint to craft.
+Ai-ko: Great! Not bad, not bad. Alright, let's see what you have learned about Anya.
+Ai-ko: Hmm, my programming suggests the following treatment.
+Ai-ko: You need to choose which blueprint to craft.
 <<set $completedPatientLogDialogue = true>>
 ===
 
 title: ChoosingBlueprint
 tags:
 ---
-Aiko: Great! Now you can choose which blueprint to craft. Pick the one you think is best for Anya.
+Ai-ko: Great! Now you can choose which blueprint to craft. Pick the one you think is best for Anya.
 <<set $readyToChooseBlueprint = true>>
 ===
