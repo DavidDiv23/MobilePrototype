@@ -3,6 +3,7 @@ tags:
 ---
 
 Ai-ko: Greetings, fellow feline! You must be the new organic intern at our Care Free Healthcare facility! 
+<<set_manager_face "1">>
 
 Ai-ko: My title is AI-ko 3500, Ai-ko for short and my primary purpose is to manage this facility to my creator’s standards. 
 
