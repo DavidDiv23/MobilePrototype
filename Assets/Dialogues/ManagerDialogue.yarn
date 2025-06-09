@@ -81,3 +81,10 @@ Aiko: Hmm, my programming suggests the following treatment:
 Aiko: You need to choose which blueprint to craft.
 <<set $completedPatientLogDialogue = true>>
 ===
+
+title: ChoosingBlueprint
+tags:
+---
+Aiko: Great! Now you can choose which blueprint to craft. Pick the one you think is best for Anya.
+<<set $readyToChooseBlueprint = true>>
+===

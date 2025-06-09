@@ -83,6 +83,10 @@ public class Tutorial : MonoBehaviour
                 foreach (var word in unlockableWords)
                     word.SetActive(true);
             }),
+            new ("ChoosingBlueprint", "$readyToChooseBlueprint", () =>
+            {
+                //open the blueprint selection UI
+            })
         };
     }
 
