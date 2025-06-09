@@ -26,6 +26,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Button outsideExclamationButton;
     [SerializeField] private Button treatButton;
     [SerializeField] private GameObject treatExclamation;
+    [SerializeField] private GameObject blueprintSelectionPanel;
 
     [Header("Inventory & Items")]
     [SerializeField] private Inventory inventory;
@@ -89,6 +90,7 @@ public class Tutorial : MonoBehaviour
             new ("ChoosingBlueprint", "$readyToChooseBlueprint", () =>
             {
                 //open the blueprint selection UI
+                blueprintSelectionPanel.SetActive(true);
                 //test
             })
         };
@@ -105,6 +107,7 @@ public class Tutorial : MonoBehaviour
         outsideExclamationButton.interactable = false;
         treatButton.interactable = false;
         treatExclamation.SetActive(false);
+        blueprintSelectionPanel.SetActive(false);
     }
 
     public void StartingDialogue()
