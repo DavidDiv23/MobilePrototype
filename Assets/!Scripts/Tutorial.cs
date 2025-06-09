@@ -93,10 +93,6 @@ public class Tutorial : MonoBehaviour
                 blueprintSelectionPanel.SetActive(true);
                 //test
             }),
-            new ("GiftingBlueprint", "$hasGivenBlueprint", () =>
-            {
-                
-            })
         };
     }
 
@@ -139,7 +135,7 @@ public class Tutorial : MonoBehaviour
     }
     public void StartDialogueAfterBlueprintSelection()
     {
-        StartDialogueByNodeName("BlueprintChosen");
+        dialogueRunner.StartDialogue("BlueprintChosen");
     }
 
     private void OnDialogueComplete()

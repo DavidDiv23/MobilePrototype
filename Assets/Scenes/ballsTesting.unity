@@ -3085,7 +3085,7 @@ GameObject:
   - component: {fileID: 172537722}
   - component: {fileID: 172537721}
   m_Layer: 5
-  m_Name: Pill Dispenser
+  m_Name: Pill Dispenser - Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3157,6 +3157,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5866666021210002800}
         m_TargetAssemblyTypeName: UI_Handler, Assembly-CSharp
         m_MethodName: HideBlueprints
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 919132147545465727}
+        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
+        m_MethodName: StartDialogueAfterBlueprintSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22969,6 +22981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 525d445d4a776bf44ad2a34567e59492, type: 2}
+  dialogueRunner: {fileID: 3579681406051411869}
   face: 0
 --- !u!208 &1354073381
 NavMeshObstacle:
