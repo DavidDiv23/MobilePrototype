@@ -76,13 +76,21 @@ public class Tutorial : MonoBehaviour
                 arrow1.SetActive(true);
                 arrow2.SetActive(true);
             }),
-            new("AdministratingPills", "$readyToAdministerPills"),
+            new("AdministratingPills", "$readyToAdministerPills", () =>
+            {
+                treatExclamation.SetActive(false);
+            }),
             new("PatientLog", "$finishedPatientLogDialogue", () =>
             {
                 patientLog.SetActive(true);
                 foreach (var word in unlockableWords)
                     word.SetActive(true);
             }),
+            new ("ChoosingBlueprint", "$readyToChooseBlueprint", () =>
+            {
+                //open the blueprint selection UI
+                //test
+            })
         };
     }
 
