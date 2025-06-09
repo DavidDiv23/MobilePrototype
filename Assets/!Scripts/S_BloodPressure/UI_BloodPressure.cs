@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class UI_BloodPressure : MonoBehaviour
 {
@@ -9,29 +10,34 @@ public class UI_BloodPressure : MonoBehaviour
     public Button controlButton;
     public Image fillImage;
     public TMP_Text scoreText;
+    public GameObject minigamePanel; // Parent panel for the minigame
+    public GameObject winPanel;      // Panel to show when winning
 
     [Header("Zone Settings")]
-    [Range(0, 1)] public float redZoneMin = 0f;       // Start of lower red zone
-    [Range(0, 1)] public float yellowZoneMin = 0.05f; // Start of lower yellow zone
-    [Range(0, 1)] public float greenZoneMin = 0.3f;   // Start of green zone
-    [Range(0, 1)] public float greenZoneMax = 0.7f;   // End of green zone
-    [Range(0, 1)] public float yellowZoneMax = 0.9f;  // End of upper yellow zone
-    [Range(0, 1)] public float redZoneMax = 1f;       // End of upper red zone
+    [Range(0, 1)] public float redZoneMin = 0f;
+    [Range(0, 1)] public float yellowZoneMin = 0.05f;
+    [Range(0, 1)] public float greenZoneMin = 0.3f;
+    [Range(0, 1)] public float greenZoneMax = 0.7f;
+    [Range(0, 1)] public float yellowZoneMax = 0.9f;
+    [Range(0, 1)] public float redZoneMax = 1f;
 
     [Header("Game Settings")]
     public float decayRate = 0.1f;
     public float pressGain = 0.15f;
+    public float winDelay = 2f; // Seconds to show win panel before resetting
 
     [Header("Scoring System")]
     public float currentScore = 0f;
     public float maxScore = 100f;
-    public float greenScoreRate = 15f;  // Fastest rate in green zone
-    public float yellowScoreRate = 5f;  // Slower rate in yellow zone
+    public float greenScoreRate = 15f;
+    public float yellowScoreRate = 5f;
 
     [Header("Color Settings")]
     public Color redColor = Color.red;
     public Color yellowColor = Color.yellow;
     public Color greenColor = Color.green;
+
+    private bool gameActive = true;
 
     void Start()
     {
@@ -42,13 +48,19 @@ public class UI_BloodPressure : MonoBehaviour
             fillImage = pressureBar.fillRect.GetComponent<Image>();
         }
 
+        // Initialize UI
         pressureBar.value = 0f;
         UpdateBarColor();
         UpdateScoreDisplay();
+
+        // Ensure win panel is hidden at start
+        if (winPanel != null) winPanel.SetActive(false);
     }
 
     void Update()
     {
+        if (!gameActive) return;
+
         pressureBar.value -= decayRate * Time.deltaTime;
         pressureBar.value = Mathf.Clamp01(pressureBar.value);
 
@@ -58,6 +70,7 @@ public class UI_BloodPressure : MonoBehaviour
 
     void OnButtonPressed()
     {
+        if (!gameActive) return;
         pressureBar.value += pressGain;
     }
 
@@ -67,53 +80,53 @@ public class UI_BloodPressure : MonoBehaviour
 
         float currentValue = pressureBar.value;
 
-        // Determine color based on zone boundaries
         if (currentValue < redZoneMin || currentValue > redZoneMax)
         {
-            // Critical red zones (extremes)
             fillImage.color = redColor;
         }
         else if (currentValue < yellowZoneMin || currentValue > yellowZoneMax)
         {
-            // Red zones (but not extremes)
             fillImage.color = redColor;
         }
         else if (currentValue < greenZoneMin || currentValue > greenZoneMax)
         {
-            // Yellow warning zones
             fillImage.color = yellowColor;
         }
         else
         {
-            // Green ideal zone
             fillImage.color = greenColor;
         }
     }
 
     void UpdateScore()
     {
+        if (!gameActive) return;
+
         float scoringRate = 0f;
         float currentValue = pressureBar.value;
 
         // Determine scoring rate based on current zone
         if (currentValue >= greenZoneMin && currentValue <= greenZoneMax)
         {
-            // Green zone - fastest rate
             scoringRate = greenScoreRate;
         }
         else if ((currentValue >= yellowZoneMin && currentValue < greenZoneMin) ||
                  (currentValue > greenZoneMax && currentValue <= yellowZoneMax))
         {
-            // Yellow zones - slower rate
             scoringRate = yellowScoreRate;
         }
-        // Red zones get 0 scoring rate
 
         // Apply scoring
         if (scoringRate > 0)
         {
             currentScore += scoringRate * Time.deltaTime;
             currentScore = Mathf.Clamp(currentScore, 0, maxScore);
+
+            // Check for win condition
+            if (currentScore >= maxScore)
+            {
+                StartCoroutine(WinGame());
+            }
         }
 
         UpdateScoreDisplay();
@@ -126,6 +139,37 @@ public class UI_BloodPressure : MonoBehaviour
             float percentage = (currentScore / maxScore) * 100f;
             scoreText.text = $"{percentage:F0}%";
         }
+    }
+
+    IEnumerator WinGame()
+    {
+        gameActive = false;
+
+        // Show win panel
+        if (winPanel != null)
+        {
+            winPanel.SetActive(true);
+        }
+
+        // Wait for the specified delay
+        yield return new WaitForSeconds(winDelay);
+
+        // Reset the game
+        ResetGame();
+
+        // Close panels
+        if (winPanel != null) winPanel.SetActive(false);
+        if (minigamePanel != null) minigamePanel.SetActive(false);
+    }
+
+    void ResetGame()
+    {
+        // Reset game state
+        gameActive = true;
+        currentScore = 0f;
+        pressureBar.value = 0f;
+        UpdateBarColor();
+        UpdateScoreDisplay();
     }
 
     // Visualize zones in the editor for easier configuration
