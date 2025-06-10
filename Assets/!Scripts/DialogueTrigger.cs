@@ -65,7 +65,12 @@ public class DialogueTrigger : MonoBehaviour
 
     private void CheckIfMyDialogueFinished()
     {
-        if (dialogueRunner.CurrentNodeName == "AnyaIntro")
+        if (dialogueRunner.CurrentNodeName == "AnyaIntro" 
+            || dialogueRunner.CurrentNodeName == "AnyaDialogueManager"
+            || dialogueRunner.CurrentNodeName == "AnyaDialoguePriorToManager"
+            || dialogueRunner.CurrentNodeName == "PlayerReturnsToAnya"
+            || dialogueRunner.CurrentNodeName == "GiftingBlueprint"
+            || dialogueRunner.CurrentNodeName == "CompletingPillsTask")
         {
             OnMyDialogueComplete();
         }
