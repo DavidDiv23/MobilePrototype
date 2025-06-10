@@ -82,8 +82,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: b895d58a288476f47a4c9d09437e4aab, type: 2}
   amount: 3
-  pickupDistance: 5
+  pickupDistance: 10
   canvasOffset: {x: 0, y: 2, z: 0}
+  respawnTime: 30
   pickupCanvas: {fileID: 0}
 --- !u!4 &2069753802159122697 stripped
 Transform:

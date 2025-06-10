@@ -7,7 +7,7 @@ public class ItemPickup2 : MonoBehaviour
     [Header("Item Settings")]
     public ItemSO itemData;
     public int amount = 1;
-    public float pickupDistance = 5f;
+    public float pickupDistance = 10f;
     public Vector3 canvasOffset = new Vector3(0, 2f, 0);
     public float respawnTime = 30f; // New: Time in seconds before item respawns
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a267a623a39d94b4fa8876e99612cbb7
+guid: 02247fd1fa536314995e9612ab51d6bb
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,23 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Rock1
-    second: {fileID: 2100000, guid: 0f77e242caa2ef24a9273fd25b4d9e17, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rock2
-    second: {fileID: 2100000, guid: 34f32a95cd613284195a2e83441a6c8d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rock3
-    second: {fileID: 2100000, guid: 233c0577709e33f49af93f04ec4ad9dc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Rock4
-    second: {fileID: 2100000, guid: e5f1c25a2a7ff524a8b595839d603fc9, type: 2}
+      name: Material.001
+    second: {fileID: 2100000, guid: 62da21340aab2e7409dadaa027df0ade, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

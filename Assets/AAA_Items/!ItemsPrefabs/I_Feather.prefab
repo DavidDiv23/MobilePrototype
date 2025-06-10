@@ -99,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 49adfaeea73ef414ba8d7375f75ebf91, type: 2}
   amount: 1
-  pickupDistance: 5
+  pickupDistance: 10
   canvasOffset: {x: 0, y: 2, z: 0}
+  respawnTime: 30
   pickupCanvas: {fileID: 6580226350892497186}
 --- !u!1001 &3776112816988538784
 PrefabInstance:
