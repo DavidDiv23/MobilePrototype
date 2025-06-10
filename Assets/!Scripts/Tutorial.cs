@@ -26,6 +26,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Button outsideExclamationButton;
     [SerializeField] private Button treatButton;
     [SerializeField] private GameObject treatExclamation;
+    [SerializeField] private GameObject blueprintSelectionPanel;
 
     [Header("Inventory & Items")]
     [SerializeField] private Inventory inventory;
@@ -89,8 +90,9 @@ public class Tutorial : MonoBehaviour
             new ("ChoosingBlueprint", "$readyToChooseBlueprint", () =>
             {
                 //open the blueprint selection UI
+                blueprintSelectionPanel.SetActive(true);
                 //test
-            })
+            }),
         };
     }
 
@@ -105,6 +107,7 @@ public class Tutorial : MonoBehaviour
         outsideExclamationButton.interactable = false;
         treatButton.interactable = false;
         treatExclamation.SetActive(false);
+        blueprintSelectionPanel.SetActive(false);
     }
 
     public void StartingDialogue()
@@ -129,6 +132,10 @@ public class Tutorial : MonoBehaviour
     public void StartCraftingDialogue()
     {
         StartDialogueByNodeName("CraftingPills");
+    }
+    public void StartDialogueAfterBlueprintSelection()
+    {
+        dialogueRunner.StartDialogue("BlueprintChosen");
     }
 
     private void OnDialogueComplete()
@@ -155,13 +162,16 @@ public class Tutorial : MonoBehaviour
         hospitalButton.SetActive(false);
         panelUI.SetActive(false);
     }
+    
 
     private void OnEnable() =>
         UI_Crafting.OnItemCrafted += OnPlantBlueprintCrafted;
 
     private void OnDisable() =>
         UI_Crafting.OnItemCrafted -= OnPlantBlueprintCrafted;
-
+    
+    
+    // This method is called when the player crafts the plant blueprint (change it)
     private void OnPlantBlueprintCrafted(ItemSO obj)
     {
         if (exclamationMark != null)

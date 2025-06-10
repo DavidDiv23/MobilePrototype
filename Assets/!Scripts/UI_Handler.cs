@@ -20,7 +20,8 @@ public class UI_Handler : MonoBehaviour
     
     public bool isInDistance;
     public SphereCollider sphereCollider;
-    
+
+    [SerializeField] private GameObject blueprintsCanva;
     void Start()
     {
         uiCanvas.SetActive(false);
@@ -81,6 +82,10 @@ public class UI_Handler : MonoBehaviour
     public void HidePatientLog()
     {
         patientLog.SetActive(false);
+    }
+    public void HideBlueprints()
+    {
+        blueprintsCanva.SetActive(false);
     }
     
     private void OnTriggerEnter(Collider other)

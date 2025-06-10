@@ -4,22 +4,29 @@
 Kino: Hi erm… are you ANYAW- Anya? 
 
 Anya: Yeah, and who might you be? Are you also going to make a fool of me, like that rude robot?!
-<<set_face "2" "4">>
+<<set_face "2" "2">>
 
 ...
 
 -> I’m the new nurse.
     Kino: My-my name is Kino, the new nurse-- intern.  
     Anya: And what do you want from me?
+    <<set_face "2" "2">>
 -> I don’t want to make fun of you.
     Kino: I’m very new to this and it’s gonna sound very awkward, but I’m sorry if my boss made you feel that way. My-my name is Kino, the new nurse-- intern.
     Anya: Okay… apology accepted.
+    <<set_face "0" "1">>
     
-Kino: Look, the thing is… I need to help you, or Aiko will fire me, and this is only my first day! So, if there is anything you can tell me to treat you, it would mean a great deal for me. 
+Kino: Look, the thing is… I need to help you,  but this is only my first day!
+Kino: So, if there is anything you can tell me to treat you, it would mean a great deal to me. 
 
-Anya: Hmm, that robot really is mean to everyone. Alright, maybe you can help me. I’ve been experiencing some dizziness and anxiety lately; I probably need to get my blood pressure checked. 
+Anya: I’ve been experiencing some dizziness and anxiety lately; Apparently, it’s caused by my high blood pressure? I’m not sure… 
+<<set_face "0" "1">>
 
-Kino: Then let’s go inside to get that looked at!  
+Anya: : I’m supposed to take pills for that, I think… I forget about it a lot, it’s kind of embarrassing…
+<<set_face "3" "1">>
+
+Kino: Oh, don’t worry about that, I’ll go ask the manager about it. 
 
 <<set $hasFinishedIntro = true>>
 ===
@@ -27,18 +34,21 @@ Kino: Then let’s go inside to get that looked at!
 title: AnyaDialogueManager
 ---
 Have you spoken to the manager yet?
+<<set_face "0" "1">>
 ===
 
 title: AnyaDialoguePriorToManager
 ---
 <<!if $hasSpokenToManager>>
 Anya: Have you learned anything new?
+<<set_face "0" "1">>
 ...
 ===
 
 title: PlayerReturnsToAnya
 ---
 Anya: Have you learned anything new?
+<<set_face "0" "1">>
 -> Tell her
 -> Yes, I have found a treatment
     Kino: Yes! Based on your symptoms, we have to monitor your blood pressure for some time to see if there are any drastic changes that we need to account when determining the correct treatment. While this is happening, I can also give you this Automatic Pill Dispenser that reminds you to take calming medicine for your anxiety.  
@@ -50,11 +60,47 @@ title: CompletingPillsTask
 tags:
 ---
 Anya: Oh, thank you for the pills... I feel bad for not being able to take them myself.
+<<set_face "3" "4">>
+
 Kino: No problem, I’m here to help you.
 Anya: Still... I do not like it, but thank you.
+<<set_face "3" "2">>
+
 Kino: Thank you for telling me, maybe the manager knows a way to make it easier for you.
 <<set $completedPillsTask = true>>
 ===
+
+title: GiftingBlueprint
+tags:
+---
+Kino: Hey! I know you don’t like being reminded to take pills, so I’ve got you this! It’s an automatic pill dispenser that will give you pills whenever you need them. Now you don’t have to worry about anything, I’ll only need to refill it once in a while.
+<<set_face "4" "1">>
+Anya: Oh… really? That sounds nice… You're way better than that robot. 
+<<set_face "3" "2">>
+Anya: It’s always on about efficiency and statistics, I never know what he’s talking about…
+
+Kino: I’m sorry about that, he can be a bit stiff sometimes.. But he was the one who helped me come up with this gift for you! So he’s not entirely bad…
+<<set_face "2" "2">>
+Anya: If you say so… but I still don’t like him! He doesn’t care about anything around him! Have you seen his room? 
+Anya: A complete mess! He even tried to throw away a painting from my room… He thought it was trash until I told him it’s my most prized possession…
+
+Kino: What?! He really lacks tact sometimes… 
+Kino: This painting… Did u paint it yourself?
+<<set_face "3" "2">>
+Anya: Yes… I like painting in my free time but I haven’t been able to pick it up recently… I can’t find any inspiration…
+-> Oh, I’m sorry to hear that…
+    Kino: How about you try to teach me some? Maybe we could set it up in the garden?
+    <<set_face "4" "4">>
+    Anya: maybe… Would you really want to?
+-> Why don’t you just pick up a brush and paint?
+    Kino: 
+    <<set_face "2" "2">>
+    Anya: It’s not as easy… forget it.
+
+<<set $hasGivenBlueprint = true>>
+===
+
+
 
 
 

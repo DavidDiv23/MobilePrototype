@@ -16,6 +16,8 @@ public class SimpleMovement : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.updatePosition = true;
+        agent.updateRotation = true;
     }
     private void Update()
     {
@@ -36,6 +38,7 @@ public class SimpleMovement : MonoBehaviour
                 agent.SetDestination(hit.point);
             }
         }
+        Debug.Log("Agent Velocity: " + agent.velocity.magnitude);
     }
     public void SetCamera(Camera cam)
     {

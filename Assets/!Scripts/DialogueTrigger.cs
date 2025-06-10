@@ -35,18 +35,24 @@ public class DialogueTrigger : MonoBehaviour
     public void StartingDialogue()
     {
         var variableStorage = dialogueRunner.VariableStorage;
-        
+
         if (dialogueNodeName == "AnyaIntro" || dialogueNodeName == "AnyaDialogueManager")
         {
+            variableStorage.TryGetValue("$hasGivenBlueprint", out bool hasGivenBlueprint);
+            variableStorage.TryGetValue("$completedPillsTask", out bool hasCompletedPills);
             variableStorage.TryGetValue("$hasFinishedIntro", out bool hasFinishedIntro);
-            
-            if (hasFinishedIntro)
+
+            if (!hasFinishedIntro)
             {
-                dialogueRunner.StartDialogue("AnyaDialogueManager");
+                dialogueRunner.StartDialogue("AnyaIntro");
+            }
+            else if (hasCompletedPills && !hasGivenBlueprint)
+            {
+                dialogueRunner.StartDialogue("GiftingBlueprint");
             }
             else
             {
-                dialogueRunner.StartDialogue("AnyaIntro");
+                dialogueRunner.StartDialogue("AnyaDialogueManager");
             }
         }
         else
@@ -59,7 +65,12 @@ public class DialogueTrigger : MonoBehaviour
 
     private void CheckIfMyDialogueFinished()
     {
-        if (dialogueRunner.CurrentNodeName == "AnyaIntro")
+        if (dialogueRunner.CurrentNodeName == "AnyaIntro" 
+            || dialogueRunner.CurrentNodeName == "AnyaDialogueManager"
+            || dialogueRunner.CurrentNodeName == "AnyaDialoguePriorToManager"
+            || dialogueRunner.CurrentNodeName == "PlayerReturnsToAnya"
+            || dialogueRunner.CurrentNodeName == "GiftingBlueprint"
+            || dialogueRunner.CurrentNodeName == "CompletingPillsTask")
         {
             OnMyDialogueComplete();
         }
