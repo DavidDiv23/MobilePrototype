@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ING_Apple
   m_EditorClassIdentifier: 
   itemName: Apple
-  icon: {fileID: 0}
-  description: Apple
+  icon: {fileID: 21300000, guid: 2b02b1824184afb4da10c79af05abf40, type: 3}
+  description: Delicious Apple
   isStackable: 1
   category: 0
   isLearnedByDefault: 0

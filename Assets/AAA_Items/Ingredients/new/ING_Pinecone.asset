@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ING_Pinecone
   m_EditorClassIdentifier: 
   itemName: Pinecone
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a17c95452d82cc7429ee9c2088a5b4ad, type: 3}
   description: A pinecone from a tree. Can be used for crafting
   isStackable: 1
   category: 0

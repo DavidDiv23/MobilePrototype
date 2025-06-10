@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ING_MushroomBlue
   m_EditorClassIdentifier: 
   itemName: Blue Mushroom
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 21300000, guid: 17832a31d4540394cbb767d3c025af14, type: 3}
+  description: Funcky purple mushroom
   isStackable: 1
   category: 0
   isLearnedByDefault: 0

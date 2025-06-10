@@ -15,8 +15,8 @@ MonoBehaviour:
   itemName: Blueprint
   icon: {fileID: 21300000, guid: a9e2f0792d630e1458edd0f05d7fbcf5, type: 3}
   description: Blueprint for the Pill Dispenser
-  category: 1
   isStackable: 0
+  category: 1
   isLearnedByDefault: 0
   recipes:
   - resultItem: {fileID: 11400000, guid: ad263c9ecc21ade4783aab9e223e7a5c, type: 2}
@@ -24,7 +24,7 @@ MonoBehaviour:
     requirements:
     - item: {fileID: 11400000, guid: 913e61e5525990a4da20c6e1b4cb5e02, type: 2}
       amount: 2
-    - item: {fileID: 11400000, guid: 600b213fc3977134f98fec67c8e3bd8f, type: 2}
+    - item: {fileID: 11400000, guid: 923dc26db1830c043a801a30d3eab504, type: 2}
       amount: 1
     - item: {fileID: 11400000, guid: 038ef958b54f0244b9fc55c066285967, type: 2}
       amount: 2

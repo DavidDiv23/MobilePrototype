@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pills
   icon: {fileID: 21300000, guid: 5516210efbfdaaf43a6179e889f9bbbe, type: 3}
-  description: 
+  description: I love my pills
   isStackable: 1
   category: 1
   isLearnedByDefault: 1

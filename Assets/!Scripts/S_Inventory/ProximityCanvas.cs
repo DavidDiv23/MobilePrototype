@@ -3,19 +3,14 @@ using UnityEngine;
 public class ProximityCanvas : MonoBehaviour
 {
     public Canvas interactCanvas; // Assign in Inspector
-    public float activationRadius = 3f; // Adjust radius as needed
+    public float activationRadius = 3f;
 
-    private SphereCollider proximityCollider;
     private GameObject player;
+    private bool playerInRange;
 
     void Start()
     {
-        // Set up the proximity collider
-        proximityCollider = gameObject.AddComponent<SphereCollider>();
-        proximityCollider.radius = activationRadius;
-        proximityCollider.isTrigger = true;
-
-        // Find player by tag (make sure your player has the "Player" tag)
+        // Find player by tag
         player = GameObject.FindGameObjectWithTag("Player");
 
         // Ensure canvas is hidden at start
@@ -23,21 +18,35 @@ public class ProximityCanvas : MonoBehaviour
         {
             interactCanvas.gameObject.SetActive(false);
         }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == player)
+        else
         {
-            ToggleCanvas(true);
+            Debug.LogError("Interact Canvas not assigned in ProximityCanvas!", this);
         }
     }
 
-    void OnTriggerExit(Collider other)
+    void Update()
     {
-        if (other.gameObject == player)
+        if (player == null) return;
+
+        // Calculate distance to player
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        // Toggle canvas based on distance
+        if (distance <= activationRadius)
         {
-            ToggleCanvas(false);
+            if (!playerInRange)
+            {
+                playerInRange = true;
+                ToggleCanvas(true);
+            }
+        }
+        else
+        {
+            if (playerInRange)
+            {
+                playerInRange = false;
+                ToggleCanvas(false);
+            }
         }
     }
 
@@ -49,7 +58,6 @@ public class ProximityCanvas : MonoBehaviour
         }
     }
 
-    // Optional: Visualize the radius in editor
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;

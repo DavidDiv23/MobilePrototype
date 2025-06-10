@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ING_MushroomOrange
   m_EditorClassIdentifier: 
   itemName: Orange Mushroom
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 21300000, guid: 17832a31d4540394cbb767d3c025af14, type: 3}
+  description: funcky orange mushroom
   isStackable: 1
   category: 0
   isLearnedByDefault: 0

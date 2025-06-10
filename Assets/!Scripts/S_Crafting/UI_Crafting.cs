@@ -178,10 +178,15 @@ public class UI_Crafting : MonoBehaviour
 
         if (newState)
         {
-            // Force refresh inventory check
+            // Force refresh when opening
             StartCoroutine(DelayedRefresh());
         }
-        UpdateCraftingState();
+        else
+        {
+            // Clean up when closing
+            if (DescriptionWindow != null) DescriptionWindow.SetActive(false);
+            if (CraftableWindow != null) CraftableWindow.SetActive(false);
+        }
     }
     private IEnumerator DelayedRefresh()
     {
