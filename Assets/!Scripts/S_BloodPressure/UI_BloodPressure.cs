@@ -8,10 +8,10 @@ public class UI_BloodPressure : MonoBehaviour
     [Header("UI References")]
     public Slider pressureBar;
     public Button controlButton;
-    public Image fillImage;          // Image that will display sprites
+    public Image fillImage;
     public TMP_Text scoreText;
-    public GameObject minigamePanel;
-    public GameObject winPanel;
+    public GameObject minigamePanel; // Parent panel for the minigame
+    public GameObject winPanel;      // Panel to show when winning
 
     [Header("Zone Settings")]
     [Range(0, 1)] public float redZoneMin = 0f;
@@ -21,15 +21,10 @@ public class UI_BloodPressure : MonoBehaviour
     [Range(0, 1)] public float yellowZoneMax = 0.9f;
     [Range(0, 1)] public float redZoneMax = 1f;
 
-    [Header("Sprite Settings")] // Replaces Color Settings
-    public Sprite redSprite;
-    public Sprite yellowSprite;
-    public Sprite greenSprite;
-
     [Header("Game Settings")]
     public float decayRate = 0.1f;
     public float pressGain = 0.15f;
-    public float winDelay = 2f;
+    public float winDelay = 2f; // Seconds to show win panel before resetting
 
     [Header("Scoring System")]
     public float currentScore = 0f;
@@ -37,18 +32,28 @@ public class UI_BloodPressure : MonoBehaviour
     public float greenScoreRate = 15f;
     public float yellowScoreRate = 5f;
 
+    [Header("Color Settings")]
+    public Color redColor = Color.red;
+    public Color yellowColor = Color.yellow;
+    public Color greenColor = Color.green;
+
     private bool gameActive = true;
 
     void Start()
     {
         controlButton.onClick.AddListener(OnButtonPressed);
+
         if (fillImage == null && pressureBar.fillRect != null)
         {
             fillImage = pressureBar.fillRect.GetComponent<Image>();
         }
+
+        // Initialize UI
         pressureBar.value = 0f;
-        UpdateBarSprite(); // Initialize sprite
+        UpdateBarColor();
         UpdateScoreDisplay();
+
+        // Ensure win panel is hidden at start
         if (winPanel != null) winPanel.SetActive(false);
     }
 
@@ -59,7 +64,7 @@ public class UI_BloodPressure : MonoBehaviour
         pressureBar.value -= decayRate * Time.deltaTime;
         pressureBar.value = Mathf.Clamp01(pressureBar.value);
 
-        UpdateBarSprite(); // Changed from UpdateBarColor
+        UpdateBarColor();
         UpdateScore();
     }
 
@@ -69,7 +74,7 @@ public class UI_BloodPressure : MonoBehaviour
         pressureBar.value += pressGain;
     }
 
-    void UpdateBarSprite() // Replaces UpdateBarColor
+    void UpdateBarColor()
     {
         if (fillImage == null) return;
 
@@ -77,19 +82,19 @@ public class UI_BloodPressure : MonoBehaviour
 
         if (currentValue < redZoneMin || currentValue > redZoneMax)
         {
-            fillImage.sprite = redSprite;
+            fillImage.color = redColor;
         }
         else if (currentValue < yellowZoneMin || currentValue > yellowZoneMax)
         {
-            fillImage.sprite = redSprite;
+            fillImage.color = redColor;
         }
         else if (currentValue < greenZoneMin || currentValue > greenZoneMax)
         {
-            fillImage.sprite = yellowSprite;
+            fillImage.color = yellowColor;
         }
         else
         {
-            fillImage.sprite = greenSprite;
+            fillImage.color = greenColor;
         }
     }
 
@@ -163,6 +168,7 @@ public class UI_BloodPressure : MonoBehaviour
         gameActive = true;
         currentScore = 0f;
         pressureBar.value = 0f;
+        UpdateBarColor();
         UpdateScoreDisplay();
     }
 
