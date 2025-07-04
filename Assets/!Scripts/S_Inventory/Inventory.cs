@@ -48,12 +48,11 @@ public class Inventory : MonoBehaviour  // Must inherit from MonoBehaviour
         var testItems = new List<(string name, string fallbackName, int amount)>()
     {
         ("Crystal", null, 5),
-        ("Stick", "Wooden Stick", 3),
-        ("Snail Shell", "Shell", 2),
-        ("Orange", null, 1),
+        ("Leaf", null, 3),
+        ("Pinecone",null, 2),
         ("Rock", "Stone", 20),
         ("Blueprint", "Crafting Blueprint", 1),
-        ("Berry", "Red Berry", 10),
+        ("Apple",null, 10)
        // ("Feather", "Bird Feather", 4),
         //("Pill Dispenser", null, 1),
     };
