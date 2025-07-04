@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ING_Rock
   m_EditorClassIdentifier: 
   itemName: Rock
-  icon: {fileID: 21300000, guid: b1800509e1eaaeb42a402fa9e2c4dd1d, type: 3}
+  icon: {fileID: 21300000, guid: f7232f2200f320949af2e3ad654d3876, type: 3}
   description: It's not just a boulder.
-  category: 0
   isStackable: 1
+  category: 0
   isLearnedByDefault: 0
   recipes: []

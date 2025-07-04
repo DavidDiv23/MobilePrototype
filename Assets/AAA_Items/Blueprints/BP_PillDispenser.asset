@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BP_PillDispenser
   m_EditorClassIdentifier: 
   itemName: Blueprint
-  icon: {fileID: 21300000, guid: a9e2f0792d630e1458edd0f05d7fbcf5, type: 3}
+  icon: {fileID: 21300000, guid: ec1740d7575339044aae0af939a30264, type: 3}
   description: Blueprint for the Pill Dispenser
-  category: 1
   isStackable: 0
+  category: 1
   isLearnedByDefault: 0
   recipes:
   - resultItem: {fileID: 11400000, guid: ad263c9ecc21ade4783aab9e223e7a5c, type: 2}

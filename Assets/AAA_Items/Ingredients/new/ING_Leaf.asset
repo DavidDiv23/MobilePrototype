@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ING_Leaf
   m_EditorClassIdentifier: 
   itemName: Leaf
-  icon: {fileID: 21300000, guid: e015a79db89f82f40b65fbde2bb6b56c, type: 3}
+  icon: {fileID: 21300000, guid: a134e6b34a0a8c8498e9e68e16cc7eb5, type: 3}
   description: Dried medicinal leaf. Has healing properties.
-  category: 0
   isStackable: 1
+  category: 0
   isLearnedByDefault: 0
   recipes: []

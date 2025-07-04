@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ING_Crystal
   m_EditorClassIdentifier: 
   itemName: Crystal
-  icon: {fileID: 21300000, guid: c4b080c6fa58daf4cbd8db441b3a9f1f, type: 3}
+  icon: {fileID: 21300000, guid: 016df34132f838444ba76e4e08fa9619, type: 3}
   description: 'Shiny Crystal. Crafting Material
 
 '

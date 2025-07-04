@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ING_Feather
   m_EditorClassIdentifier: 
   itemName: Feather
-  icon: {fileID: 21300000, guid: 2c5901287aad63345892641b7bf092e4, type: 3}
+  icon: {fileID: 21300000, guid: 71ef03f62f9a1474abe6007be0d588ef, type: 3}
   description: A feather. Can be used for crafting
   isStackable: 1
   category: 0
